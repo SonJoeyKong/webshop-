@@ -1,0 +1,3 @@
+cd "C:/xampp/htdocs/eigen website/webshop-"
+git remote add origin https://github.com/SonJoeyKong/REPOSITORY.git
+git remote -v
