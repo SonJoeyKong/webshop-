@@ -1,3 +1,27 @@
 cd "C:/xampp/htdocs/eigen website/webshop-"
 git remote add origin https://github.com/SonJoeyKong/REPOSITORY.git
 git remote -v
+### Lokale repository initialiseren
+```bash
+git init
+```
+
+### Remote repository koppelen
+```bash
+git remote add origin <URL>
+```
+
+### Eerste commit maken
+```bash
+git add .
+git commit -m "Initial commit"
+git push origin main
+```
+
+### Branch-strategie bepalen
+- Werk met een `main` en `develop` branch.
+- Gebruik feature-branches voor nieuwe functionaliteiten.
+
+### Toegangsrechten instellen
+- Zorg ervoor dat teamleden toegang hebben via de repository-instellingen op GitHub.
+- Beheer permissies via de "Settings" > "Collaborators and teams" sectie.
