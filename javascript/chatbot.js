@@ -57,9 +57,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const responses = {
         "hello": "Hi! How can I assist you with our webshop today?",
+        "hallo": "Hi! How can I assist you with our webshop today?",
+        "goedemorgen": "Hi! How can I assist you with our webshop today?",
+        "goedemiddag": "Hi! How can I assist you with our webshop today?",
+        "goedeavond": "Hi! How can I assist you with our webshop today?",
         "help": "Sure! What do you need help with? Products, orders, or something else?",
         "products": "We have a variety of products! Check out our catalog on the webshop.",
-        "bye": "Goodbye! Have a great day!"
+        "bye": "Goodbye! Have a great day!",
+        "totziens": "Goodbye! Have a great day!",
+        "dankje": "You're welcome! If you have any more questions, feel free to ask.",
+        "bedankt": "You're welcome! If you have any more questions, feel free to ask.",
+        
     };
 
     const addMessage = (message, isBot = false) => {
