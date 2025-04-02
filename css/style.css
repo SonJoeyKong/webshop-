@@ -4,8 +4,7 @@
 :root {
     --primary-color: #2575fc;
     --secondary-color: #6a11cb;
-    --background-light: #f5f7fa;
-    --background-dark: #1f2937;
+    --background-light: #FFFFFF;
     --text-light: #333;
     --text-dark: #e5e7eb;
     --header-height: 80px;
@@ -20,11 +19,86 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    background: linear-gradient(135deg, var(--background-light) 0%, #c3cfe2 100%);
+    background: var(--background-light);
     color: var(--text-light);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+}
+
+/* Basis navbar style */
+nav {
+    background: #E5E5E5;
+    padding: 1rem 0;
+    font-weight: bold;
+}
+
+/* flex voor de navbar */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Links die links staan */
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* grootte tussen de links */
+}
+
+.nav-left a {
+    color: #26B9A2;
+    text-decoration: none;
+}
+
+/* Zoekbalk die in het mdiden staat */
+.search-container {
+    flex: 1; /* zorgt dat het de breedte pakt die over is */
+    max-width: 500px;
+    margin: 0 20px;
+}
+
+.search-group {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.search-group i {
+    color: #26B9A2;
+    margin-right: 5px;
+}
+
+.search-group input {
+    border: none;
+    padding: 5px;
+    width: 100%;
+}
+
+.search-group button {
+    background: #26B9A2;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+/* Inloggen/Registreren die rechts staan */
+.nav-right {
+    display: flex;
+    gap: 15px;
+}
+
+.nav-right a {
+    color: #26B9A2;
+    text-decoration: none;
 }
 
 /* Container styling */
@@ -74,6 +148,67 @@ body {
     animation: fadeIn 0.8s ease forwards;
 }
 
+/* Login */
+.login-container {
+    max-width: 600px;  /* Breder gemaakt (was 400px) */
+    margin: 2rem auto;
+    padding: 3rem;  /* Meer padding */
+    background: #EBECEA;  /* Nieuwe achtergrondkleur */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.login-container h1 {
+    color: #26B9A2;
+    text-align: center;
+    margin-bottom: 2rem;  /* Meer ruimte */
+    font-size: 1.8rem;  /* Iets grotere tekst */
+}
+
+.form-group {
+    margin-bottom: 2rem;  /* Meer ruimte tussen velden */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: #333;
+    font-weight: 500;
+    font-size: 1.1rem;  /* Iets grotere labels */
+}
+
+.form-group input {
+    width: 100%;
+    padding: 1rem;  /* Hogere inputs */
+    border: 1px solid #ddd;
+    border-radius: 6px;  /* Iets rondere hoeken */
+    font-size: 1.1rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+}
+
+.register-link {
+    color: #26B9A2;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.login-btn {
+    background: #26B9A2;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;  /* Grotere knop */
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
 /* Responsieve navigatie */
 .nav {
     display: flex;
@@ -111,9 +246,9 @@ body {
 }
 
 /* Dark mode ondersteuning */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     body {
-        background: linear-gradient(135deg, var(--background-dark) 0%, #111827 100%);
+        background: var(--background-dark);
         color: var(--text-dark);
     }
     
@@ -124,7 +259,7 @@ body {
     .nav {
         background: rgba(17, 24, 39, 0.95);
     }
-}
+} */
 
 /* Responsief ontwerp */
 @media (max-width: 768px) {

@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatContainer.style.overflow = "hidden";
     chatContainer.style.display = "flex";
     chatContainer.style.flexDirection = "column";
-    document.body.appendChild(chatContainer);
+    document.body.appendChild(chatContainer); // maakt een div met styles aan
 
     const chatHeader = document.createElement("div");
     chatHeader.style.backgroundColor = "#007bff";
@@ -23,19 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
     chatHeader.style.textAlign = "center";
     chatHeader.style.fontWeight = "bold";
     chatHeader.textContent = "Webshop Chatbot";
-    chatContainer.appendChild(chatHeader);
+    chatContainer.appendChild(chatHeader); // maakt een header aan
 
     const chatMessages = document.createElement("div");
     chatMessages.style.flex = "1";
     chatMessages.style.padding = "10px";
     chatMessages.style.overflowY = "auto";
     chatMessages.style.fontSize = "14px";
-    chatContainer.appendChild(chatMessages);
+    chatContainer.appendChild(chatMessages); // maakt een div aan voor de berichten
 
     const chatInputContainer = document.createElement("div");
     chatInputContainer.style.display = "flex";
     chatInputContainer.style.borderTop = "1px solid #ccc";
-    chatContainer.appendChild(chatInputContainer);
+    chatContainer.appendChild(chatInputContainer); // maakt een div aan voor de input
 
     const chatInput = document.createElement("input");
     chatInput.type = "text";
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatInput.style.padding = "10px";
     chatInput.style.border = "none";
     chatInput.style.outline = "none";
-    chatInputContainer.appendChild(chatInput);
+    chatInputContainer.appendChild(chatInput); // maakt een input aan voor de tekst
 
     const chatSendButton = document.createElement("button");
     chatSendButton.textContent = "Send";
@@ -53,9 +53,9 @@ document.addEventListener("DOMContentLoaded", () => {
     chatSendButton.style.backgroundColor = "#007bff";
     chatSendButton.style.color = "#fff";
     chatSendButton.style.cursor = "pointer";
-    chatInputContainer.appendChild(chatSendButton);
+    chatInputContainer.appendChild(chatSendButton); // maakt een button aan voor het versturen van de tekst
 
-    const responses = {
+    const responses = { // object met antwoorden
         "hello": "Hi! How can I assist you with our webshop today?",
         "hallo": "Hi! How can I assist you with our webshop today?",
         "goedemorgen": "Hi! How can I assist you with our webshop today?",
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
     };
 
-    const addMessage = (message, isBot = false) => {
+    const addMessage = (message, isBot = false) => { // functie om een bericht toe te voegen
         const messageElement = document.createElement("div");
         messageElement.style.margin = "5px 0";
         messageElement.style.padding = "10px";
@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     };
 
-    chatSendButton.addEventListener("click", () => {
+    chatSendButton.addEventListener("click", () => { // functie om een bericht te versturen
         const userMessage = chatInput.value.trim();
         if (userMessage) {
             addMessage(userMessage);
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    chatInput.addEventListener("keypress", (e) => {
+    chatInput.addEventListener("keypress", (e) => { // functie om een bericht te versturen met enter
         if (e.key === "Enter") {
             chatSendButton.click();
         }
