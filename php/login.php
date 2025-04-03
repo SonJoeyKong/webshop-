@@ -22,10 +22,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
 
         } else {
-            $error = "Ongeldige gebruikersnaam of wachtwoord.";
+            $_SESSION['error'] = "Ongeldige gebruikersnaam of wachtwoord.";
         }
     } else {
-        $error = "Vul alle velden in.";
+        $_SESSION['error'] = "Vul alle velden in.";
     }
 }
 ?>
@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://kit.fontawesome.com/f7a63622f4.js" crossorigin="anonymous"></script> <!-- Icons library -->
 </head>
 <body>
-    <nav> <!-- Navigatie Bar -->
+
+<nav> <!-- Navigatie Bar -->
         <div class="nav-container"> <!-- De foto & text die links staat. -->
             <div class="nav-left">
                 <a href="../index.html" class="logo-link">
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="">Producten</a>
                 <a href="">Chatbot</a>
             </div>
-    
+
             <div class="search-container"> <!-- Input Field & Button die in het midden staan.  -->
                 <div class="search-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -57,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <button>Meer zorg</button>
                 </div>
             </div>
-    
+
             <div class="nav-right"> <!-- De links die rechts staan. -->
                 <a href="login.php">Inloggen</a> <!-- Correcte link naar inlogpagina -->
                 <a href="register.php">Registreren</a>
@@ -66,24 +67,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </nav>
 
     <div class="login-container">
-    <form class="login-form" action="../php/login.php" method="POST">
-        <h1>Inloggen</h1>
+        <form class="login-form" action="../php/login.php" method="POST">
+            <h1>Inloggen</h1>
 
-        <div class="form-group">
-            <label for="username">Email Adres of naam:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        
-        <div class="form-group">
-            <label for="password">Wachtwoord:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
+            <!-- Foutmelding weergeven -->
+            <?php
+            if (isset($_SESSION['error'])) {
+                echo '<p class="error-message">' . $_SESSION['error'] . '</p>';
+                unset($_SESSION['error']); // Verwijder de foutmelding na het tonen
+            }
+            ?>
 
-        <div class="form-actions">
-            <a href="register.php" class="register-link">Registreren →</a>
-            <button type="submit" class="login-btn">Inloggen</button>
-        </div>
-    </form>
+            <div class="form-group">
+                <label for="username">Email Adres of naam:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Wachtwoord:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-actions">
+                <a href="register.php" class="register-link">Registreren →</a>
+                <button type="submit" class="login-btn">Inloggen</button>
+            </div>
+        </form>
     </div>
+
+    <script>
+    // Check of er een foutmelding is en zorg ervoor dat deze na 5 seconden verdwijnt
+    window.onload = function() {
+        var errorMessage = document.querySelector('.error-message');
+        if (errorMessage) {
+            setTimeout(function() {
+                errorMessage.style.opacity = 0;
+                setTimeout(function() {
+                    errorMessage.style.display = 'none'; // Verberg de foutmelding na fade-out
+                }, 500); // Wacht tot de fade-out is voltooid
+            }, 5000); // Wacht 5 seconden voordat de fade-out begint
+        }
+    }
+    </script>   
+
 </body>
 </html>
