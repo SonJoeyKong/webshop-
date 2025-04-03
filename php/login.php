@@ -64,31 +64,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
     
             <div class="nav-right"> <!-- De links die rechts staan. -->
-                <a href="inlog.html">Inloggen</a> <!-- Correcte link naar inlogpagina -->
-                <a href="register.html">Registreren</a>
+                <a href="login.php">Inloggen</a> <!-- Correcte link naar inlogpagina -->
+                <a href="register.php">Registreren</a>
             </div>
         </div>
     </nav>
 
-    <div class="login-container"> <!-- Container die alle components van het inlog form behoud. -->
+    <div class="login-container">
+    <form class="login-form" action="../php/login.php" method="POST">
         <h1>Inloggen</h1>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
         
-        <form class="login-form" method="POST" action="../php/login.php"> <!-- Formulier voor inloggen. -->
-            <div class="form-group">
-                <label for="username">Email Adres of naam:</label>
-                <input type="text" id="username" name="username" required> <!-- Input field voor email adres of naam. -->
-            </div>
-            
-            <div class="form-group">
-                <label for="password">Wachtwoord:</label>
-                <input type="password" id="password" name="password" required> <!-- Input field voor wachtwoord. -->
-            </div>
-            
-            <div class="form-actions">
-                <a href="register.php" class="register-link">Registreren →</a> <!-- Link naar registreren. -->
-                <button type="submit" class="login-btn">Inloggen</button> <!-- Inloggen button. -->
-            </div>
-        </form>
+        <div class="form-group">
+            <label for="password">Wachtwoord:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+
+        <div class="form-actions">
+            <a href="register.php" class="register-link">Registreren →</a>
+            <button type="submit" class="login-btn">Inloggen</button>
+        </div>
+    </form>
     </div>
 </body>
 </html>
