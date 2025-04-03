@@ -1,0 +1,4 @@
+{
+    "_comment": "Sets the port for Live Server. Default is 5500, but here it's changed to 5501.",
+    "liveServer.settings.port": 5501
+}
