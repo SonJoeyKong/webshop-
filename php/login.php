@@ -1,3 +1,40 @@
+<?php
+require_once 'database.php'; // Gebruik database.php voor de verbinding
+
+// Controleren of het formulier is ingediend
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = $_POST['username'] ?? '';
+    $pass = $_POST['password'] ?? '';
+
+    if (!empty($user) && !empty($pass)) {
+        // Gebruiker zoeken in de database
+        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE naam = :username");
+        $stmt->bindParam(':username', $user);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($result && password_verify($pass, $result['wachtwoord'])) {
+            // Inloggen geslaagd
+            session_start();
+            $_SESSION['user_id'] = $result['id'];
+            $_SESSION['username'] = $result['naam'];
+            if ($result['rol'] === 'user') {
+                header("Location: klanten.php");
+            } elseif ($result['rol'] === 'personeel') {
+                header("Location: personeel.php");
+            } else {
+                $error = "Onbekende rol.";
+            }
+            exit;
+        } else {
+            $error = "Ongeldige gebruikersnaam of wachtwoord.";
+        }
+    } else {
+        $error = "Vul alle velden in.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,8 +64,8 @@
             </div>
     
             <div class="nav-right"> <!-- De links die rechts staan. -->
-                <a href="">Inloggen</a>
-                <a href="">Registreren</a>
+                <a href="inlog.html">Inloggen</a> <!-- Correcte link naar inlogpagina -->
+                <a href="register.html">Registreren</a>
             </div>
         </div>
     </nav>
@@ -36,7 +73,7 @@
     <div class="login-container"> <!-- Container die alle components van het inlog form behoud. -->
         <h1>Inloggen</h1>
         
-        <form class="login-form" action="login.php" method="POST"> <!-- Formulier voor inloggen. -->
+        <form class="login-form" method="POST" action="../php/login.php"> <!-- Formulier voor inloggen. -->
             <div class="form-group">
                 <label for="username">Email Adres of naam:</label>
                 <input type="text" id="username" name="username" required> <!-- Input field voor email adres of naam. -->
@@ -48,7 +85,7 @@
             </div>
             
             <div class="form-actions">
-                <a href="register.html" class="register-link">Registreren →</a> <!-- Link naar registreren. -->
+                <a href="register.php" class="register-link">Registreren →</a> <!-- Link naar registreren. -->
                 <button type="submit" class="login-btn">Inloggen</button> <!-- Inloggen button. -->
             </div>
         </form>
