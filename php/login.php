@@ -18,14 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['user_id'] = $result['id'];
             $_SESSION['username'] = $result['naam'];
-            if ($result['rol'] === 'user') {
-                header("Location: klanten.php");
-            } elseif ($result['rol'] === 'personeel') {
-                header("Location: personeel.php");
-            } else {
-                $error = "Onbekende rol.";
-            }
+            header("Location: klanten.php");
             exit;
+
         } else {
             $error = "Ongeldige gebruikersnaam of wachtwoord.";
         }
@@ -75,8 +70,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Inloggen</h1>
 
         <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label for="username">Email Adres of naam:</label>
+            <input type="text" id="username" name="username" required>
         </div>
         
         <div class="form-group">
