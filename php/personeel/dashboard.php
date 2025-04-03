@@ -9,10 +9,10 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/test.css">
 </head>
 <body>
-    <div class="openbestellingen">
+    <div class="openbestellingen dashboard-container">
         <img src="../../images/icons/orders_icon.png">
         <?php 
         $query = "SELECT COUNT(*) AS aantal_open_bestellingen FROM bestelling WHERE status_bestelling = 'open'";
@@ -25,7 +25,7 @@ session_start();
         <span>Openstaande Bestellingen</span>
     </div>
 
-    <div class="omzet">
+    <div class="omzet dashboard-container">
         <img src="../../images/icons/omzet_icon.png">
         <?php 
         $query = "SELECT SUM(totaal_prijs) AS omzet FROM bestelling WHERE status_bestelling = 'verwerkt'";
@@ -38,7 +38,7 @@ session_start();
         <span>Totale Omzet</span>
     </div>
 
-    <div class="totaleproducten">
+    <div class="totaleproducten dashboard-container">
         <img src="../../images/icons/producten_icon.png">
         <?php 
         $query = "SELECT COUNT(*) AS aantal_producten FROM product"; 
@@ -51,7 +51,7 @@ session_start();
         <span>Totaal Producten</span>
     </div>
 
-    <div class="totaleklanten">
+    <div class="totaleklanten dashboard-container">
         <img src="../../images/icons/klanten_icon.png">
         <?php
         $query = "SELECT COUNT(*) AS aantal_klanten FROM gebruiker";
