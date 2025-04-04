@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['user_id'] = $result['id'];
             $_SESSION['username'] = $result['naam'];
-            header("Location: klanten.php");
+            $_SESSION['role'] = $result['rol'];
             exit;
 
         } else {
