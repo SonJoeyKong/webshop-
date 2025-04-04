@@ -1,5 +1,15 @@
 <?php
 session_start(); // Start de sessie
+require_once "database.php";
+
+// Haal producten op uit database
+try {
+    $stmt = $conn->prepare("SELECT * FROM product ORDER BY id DESC LIMIT 6");
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,5 +71,41 @@ session_start(); // Start de sessie
             </div>
         </div>
     </nav>
+
+    <main class="main-content">
+        <div class="products-grid">
+            <?php foreach($products as $product): ?>
+                <div class="product-card" data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
+                    <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
+                    <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
+                    <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
+                    <?php if($product['product_voorraad'] > 0): ?>
+                        <button class="btn btn-primary add-to-cart">
+                            In winkelwagen
+                        </button>
+                    <?php else: ?>
+                        <button class="btn" disabled>Uitverkocht</button>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </main>
+
+    <script>
+    // Auto-refresh producten elke 30 seconden
+    setInterval(() => {
+        fetch('api/getData.php')
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    // Update alleen als er wijzigingen zijn
+                    const productsGrid = document.querySelector('.products-grid');
+                    // Hier kun je de DOM updaten met nieuwe productgegevens
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }, 30000);
+    </script>
+
 </body>
 </html>
