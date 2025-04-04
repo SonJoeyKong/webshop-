@@ -1,5 +1,6 @@
 <?php
 <<<<<<< HEAD
+<<<<<<< HEAD
 session_start(); // Start de sessie
 require_once "database.php";
 
@@ -13,6 +14,9 @@ try {
 }
 =======
 require_once '../database.php';
+=======
+require_once 'database.php';
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
 session_start();
 >>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 ?>
@@ -23,8 +27,14 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apothecare Dashboard</title>
-    <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menu.css">
+
+    <!-- icons van het menu & voor dat input field -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- alpine.js voor het hamburger menutje -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
     <nav> 
@@ -69,6 +79,7 @@ session_start();
         </div>
     </nav>
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     <main class="main-content">
         <div class="products-grid">
@@ -189,6 +200,8 @@ session_start();
         </div>
     </div>
 
+=======
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
     <!-- AlpineJS voor dropdown functionaliteit -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 >>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
