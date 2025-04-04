@@ -1,6 +1,24 @@
 <?php
+<<<<<<< HEAD
+<<<<<<< HEAD
+session_start(); // Start de sessie
+require_once "database.php";
+
+// Haal producten op uit database
+try {
+    $stmt = $conn->prepare("SELECT * FROM product ORDER BY id DESC LIMIT 6");
+    $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch(PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+=======
 require_once '../database.php';
+=======
+require_once 'database.php';
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
 session_start();
+>>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 ?>
 
 <!DOCTYPE html>
@@ -9,8 +27,14 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apothecare Dashboard</title>
-    <link rel="stylesheet" href="../../css/dashboard.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menu.css">
+
+    <!-- icons van het menu & voor dat input field -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- alpine.js voor het hamburger menutje -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
     <nav> 
@@ -55,6 +79,44 @@ session_start();
         </div>
     </nav>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <main class="main-content">
+        <div class="products-grid">
+            <?php foreach($products as $product): ?>
+                <div class="product-card" data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
+                    <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
+                    <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
+                    <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
+                    <?php if($product['product_voorraad'] > 0): ?>
+                        <button class="btn btn-primary add-to-cart">
+                            In winkelwagen
+                        </button>
+                    <?php else: ?>
+                        <button class="btn" disabled>Uitverkocht</button>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </main>
+
+    <script>
+    // Auto-refresh producten elke 30 seconden
+    setInterval(() => {
+        fetch('api/getData.php')
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    // Update alleen als er wijzigingen zijn
+                    const productsGrid = document.querySelector('.products-grid');
+                    // Hier kun je de DOM updaten met nieuwe productgegevens
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }, 30000);
+    </script>
+
+=======
     <div class="dashboard-grid">
         <!-- Header sectie -->
         <div class="dashboard-header">
@@ -138,7 +200,10 @@ session_start();
         </div>
     </div>
 
+=======
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
     <!-- AlpineJS voor dropdown functionaliteit -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+>>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 </body>
 </html>
