@@ -1,19 +1,8 @@
 <?php
-// Error reporting voor development
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// Start sessie en include database
-session_start();
+<<<<<<< HEAD
+<<<<<<< HEAD
+session_start(); // Start de sessie
 require_once "database.php";
-
-// Functie voor het loggen van fouten
-function logError($error, $type = 'ERROR') {
-    $logFile = __DIR__ . '/logs/error.log';
-    $timestamp = date('Y-m-d H:i:s');
-    $message = "[$timestamp] [$type] $error\n";
-    error_log($message, 3, $logFile);
-}
 
 // Haal producten op uit database
 try {
@@ -21,9 +10,15 @@ try {
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
-    logError($e->getMessage(), 'DATABASE');
-    $error_message = "Er is een probleem met het laden van de producten. Probeer het later opnieuw.";
+    echo "Error: " . $e->getMessage();
 }
+=======
+require_once '../database.php';
+=======
+require_once 'database.php';
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
+session_start();
+>>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 ?>
 
 <!DOCTYPE html>
@@ -84,58 +79,131 @@ try {
         </div>
     </nav>
 
+<<<<<<< HEAD
+<<<<<<< HEAD
     <main class="main-content">
-        <?php if (isset($error_message)): ?>
-            <div class="error-message">
-                <?php echo htmlspecialchars($error_message); ?>
-            </div>
-        <?php else: ?>
-            <div class="products-grid">
-                <?php foreach($products as $product): ?>
-                    <div class="product-card" data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
-                        <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
-                        <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
-                        <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
-                        <?php if($product['product_voorraad'] > 0): ?>
-                            <button class="btn btn-primary add-to-cart">
-                                In winkelwagen
-                            </button>
-                        <?php else: ?>
-                            <button class="btn" disabled>Uitverkocht</button>
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
+        <div class="products-grid">
+            <?php foreach($products as $product): ?>
+                <div class="product-card" data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
+                    <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
+                    <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
+                    <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
+                    <?php if($product['product_voorraad'] > 0): ?>
+                        <button class="btn btn-primary add-to-cart">
+                            In winkelwagen
+                        </button>
+                    <?php else: ?>
+                        <button class="btn" disabled>Uitverkocht</button>
+                    <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </main>
 
     <script>
     // Auto-refresh producten elke 30 seconden
     setInterval(() => {
         fetch('api/getData.php')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Netwerk response was niet ok');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(data => {
                 if(data.success) {
+                    // Update alleen als er wijzigingen zijn
                     const productsGrid = document.querySelector('.products-grid');
-                    // Update producten
-                } else {
-                    console.error('Server error:', data.error);
+                    // Hier kun je de DOM updaten met nieuwe productgegevens
                 }
             })
-            .catch(error => {
-                console.error('Error:', error);
-                // Toon gebruikersvriendelijke foutmelding
-                const errorDiv = document.createElement('div');
-                errorDiv.className = 'error-message';
-                errorDiv.textContent = 'Er is een probleem met het verversen van de producten.';
-                document.querySelector('.main-content').prepend(errorDiv);
-            });
+            .catch(error => console.error('Error:', error));
     }, 30000);
     </script>
+
+=======
+    <div class="dashboard-grid">
+        <!-- Header sectie -->
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Dashboard</h1>
+            <div class="dashboard-actions">
+                <input type="text" class="search-bar" placeholder="Zoek een product...">
+            </div>
+        </div>
+
+        <!-- Statistieken sectie -->
+        <div class="stats-grid">
+            <div class="stat-card open-bestellingen">
+                <img src="../../images/icons/orders_icon.png" alt="Bestellingen icoon">
+                <?php 
+                $query = "SELECT COUNT(*) AS aantal FROM bestelling WHERE status_bestelling = 'open'";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
+                ?>
+                <span class="stat-label">Openstaande Bestellingen</span>
+            </div>
+
+            <div class="stat-card totale-omzet">
+                <img src="../../images/icons/omzet_icon.png" alt="Omzet icoon">
+                <?php 
+                $query = "SELECT SUM(totaal_prijs) AS omzet FROM bestelling WHERE status_bestelling = 'verwerkt'";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo "<p class='stat-number'>€" . number_format(($result['omzet'] ?? 0), 2, ',', '.') . "</p>";
+                ?>
+                <span class="stat-label">Totale Omzet</span>
+            </div>
+
+            <div class="stat-card totale-producten">
+                <img src="../../images/icons/producten_icon.png" alt="Producten icoon">
+                <?php 
+                $query = "SELECT COUNT(*) AS aantal FROM product"; 
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
+                ?>
+                <span class="stat-label">Totaal Producten</span>
+            </div>
+
+            <div class="stat-card totale-klanten">
+                <img src="../../images/icons/klanten_icon.png" alt="Klanten icoon">
+                <?php
+                $query = "SELECT COUNT(*) AS aantal FROM gebruiker";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
+                ?>
+                <span class="stat-label">Totale Klanten</span>
+            </div>
+        </div>
+
+        <!-- Hoofd content sectie -->
+        <div class="main-content">
+            <div class="orders-card">
+                <h2 class="card-title">Totale Bestellingen per dag</h2>
+                <div class="chart-placeholder"></div>
+            </div>
+
+            <div class="inventory-card">
+                <h2 class="card-title">Voorraad</h2>
+                <div class="inventory-item">
+                    <h3>Product: Paracetamol</h3>
+                    <div class="progress-container">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 36%"></div>
+                        </div>
+                        <span class="progress-text">360 / 1000</span>
+                    </div>
+                </div>
+                <a href="#" class="more-link">Meer</a>
+            </div>
+        </div>
+    </div>
+
+=======
+>>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
+    <!-- AlpineJS voor dropdown functionaliteit -->
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+>>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 </body>
 </html>
