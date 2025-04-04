@@ -6,7 +6,7 @@ session_start();
 
 // redirecten als je niet logged in bent
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 }
 
@@ -78,16 +78,18 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </nav>
     <?php
-    foreach ($product as $producten) // voor elk product een array maken
+    foreach ($product as $producten) // voor elk product een div maken
     {
         echo "<div class='product'>";
         echo "<h2>" . $producten['product_naam'] . "</h2>";
-        echo "<p>Prijs: " . $producten['product_prijs'] . "</p>";
+        echo "<p>Prijs: €" . number_format($producten['product_prijs'], 2, ',', '.') . "</p>";
         echo "<p>Beschrijving: " . $producten['product_beschrijving'] . "</p>";
         echo "<div class='product-buttons'>";
-        echo "<button onclick='decreaseQuantity(\"" . $producten['product_naam'] . "\")' data-product-id='" . $producten['product_naam'] . "'>-</button>";
+        
+        echo "<button onclick='decreaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>-</button>";
         echo "<span id='quantity-" . $producten['product_naam'] . "' data-product-id='" . $producten['product_naam'] . "'>0</span>";
-        echo "<button onclick='increaseQuantity(\"" . $producten['product_naam'] . "\")' data-product-id='" . $producten['product_naam'] . "'>+</button>";
+        echo "<button onclick='increaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>+</button>";
+        
         echo "</div>";
         echo "</div>";
     }

@@ -1,35 +1,33 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-let cartItems = document.getElementById("cart-items");
+function increaseQuantity(productId, price) {
+    let quantitySpan = document.getElementById("quantity-" + productId);
+    let quantity = parseInt(quantitySpan.textContent) + 1;
+    quantitySpan.textContent = quantity;
 
-function removeFromCart(index) {
-    cart.splice(index, 1);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    updateLocalStorage(productId, quantity, price);
 }
 
-function increaseQuantity(productName) {
-    const quantitySpan = document.querySelector(`#quantity-${productName}`);
-    let currentQuantity = parseInt(quantitySpan.textContent);
-    quantitySpan.textContent = currentQuantity + 1;
+function decreaseQuantity(productId, price) {
+    let quantitySpan = document.getElementById("quantity-" + productId);
+    let quantity = parseInt(quantitySpan.textContent);
 
-    // Update quantity in localStorage
-    const product = cart.find(item => item.name === productName);
-    if (product) {
-        product.quantity = (product.quantity || 1) + 1;
-        localStorage.setItem("cart", JSON.stringify(cart));
+    if (quantity > 0) {
+        quantity--;
+        quantitySpan.textContent = quantity;
+        updateLocalStorage(productId, quantity, price);
     }
 }
 
-function decreaseQuantity(productName) {
-    const quantitySpan = document.querySelector(`#quantity-${productName}`);
-    let currentQuantity = parseInt(quantitySpan.textContent);
-    if (currentQuantity > 0) {
-        quantitySpan.textContent = currentQuantity - 1;
+function updateLocalStorage(productId, quantity, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-        // Update quantity in localStorage
-        const product = cart.find(item => item.name === productName);
-        if (product) {
-            product.quantity = Math.max((product.quantity || 1) - 1, 0);
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
+    if (quantity > 0) {
+        cart[productId] = {
+            quantity: quantity,
+            price: price
+        };
+    } else {
+        delete cart[productId];
     }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
 }
