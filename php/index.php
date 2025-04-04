@@ -1,24 +1,27 @@
 <?php
-<<<<<<< HEAD
-<<<<<<< HEAD
-session_start(); // Start de sessie
+session_start();
 require_once "database.php";
 
-// Haal producten op uit database
+// Error handling
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+function logError($error, $type = 'ERROR') {
+    $logFile = __DIR__ . '/logs/error.log';
+    $timestamp = date('Y-m-d H:i:s');
+    $message = "[$timestamp] [$type] $error\n";
+    error_log($message, 3, $logFile);
+}
+
+// Haal featured producten op
 try {
     $stmt = $conn->prepare("SELECT * FROM product ORDER BY id DESC LIMIT 6");
     $stmt->execute();
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $featured_products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch(PDOException $e) {
-    echo "Error: " . $e->getMessage();
+    logError($e->getMessage(), 'DATABASE');
+    $error_message = "Er is een probleem met het laden van de producten.";
 }
-=======
-require_once '../database.php';
-=======
-require_once 'database.php';
->>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
-session_start();
->>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
 ?>
 
 <!DOCTYPE html>
@@ -26,184 +29,93 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apothecare</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/menu.css">
-
-    <!-- icons van het menu & voor dat input field -->
+    <title>ApotheCare - Online Medicijnen Bestellen</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- alpine.js voor het hamburger menutje -->
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-    <nav> 
-        <div class="nav-container"> 
-            <div class="nav-left">
-                <a href="../index.html" class="logo-link">
-                    <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
-                    <span>Apothecare</span>
-                </a>
-                <a href="#">Producten</a>
-                <a href="#">Chatbot</a>
-            </div>
-            <div class="search-container"> 
-                <div class="search-group">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input placeholder="Zoek een product...">
-                    <button>Meer zorg</button>
-                </div>
-            </div>
-            <div class="nav-right">
-                <?php if (isset($_SESSION['username'])): ?>
-                    <a href="cart.php">
-                        <img src="../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
-                    </a>
+    <?php include 'includes/nav.php'; ?>
 
-                    <div class="menu" x-data="{ open: false }">
-                        <button @click="open = !open" class="menu-button">
-                            <img src="../images/icons/menu_icon.png" alt="Menu Icoon" width="50px">
-                        </button>
-
-                        <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
-                            <a href="dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
-                            <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <a href="login.php">Inloggen</a>
-                    <a href="register.php">Registreren</a>
-                <?php endif; ?>
-            </div>
-        </div>
-    </nav>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
     <main class="main-content">
-        <div class="products-grid">
-            <?php foreach($products as $product): ?>
-                <div class="product-card" data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
-                    <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
-                    <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
-                    <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
-                    <?php if($product['product_voorraad'] > 0): ?>
-                        <button class="btn btn-primary add-to-cart">
-                            In winkelwagen
-                        </button>
-                    <?php else: ?>
-                        <button class="btn" disabled>Uitverkocht</button>
-                    <?php endif; ?>
+        <section class="hero-section">
+            <h1>Bestel uw medicijnen online</h1>
+            <p>Veilig en betrouwbaar, direct bij u thuisbezorgd</p>
+            <a href="shop/producten.php" class="btn btn-primary">Bekijk producten</a>
+        </section>
+        
+        <?php if (isset($error_message)): ?>
+            <div class="error-message">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php elseif (!empty($featured_products)): ?>
+            <section class="featured-products">
+                <h2>Uitgelichte Producten</h2>
+                <div class="products-grid">
+                    <?php foreach($featured_products as $product): ?>
+                        <div class="product-card">
+                            <?php if (!empty($product['afbeelding'])): ?>
+                                <img src="<?php echo htmlspecialchars($product['afbeelding']); ?>" 
+                                     alt="<?php echo htmlspecialchars($product['product_naam']); ?>">
+                            <?php endif; ?>
+                            <h3><?php echo htmlspecialchars($product['product_naam']); ?></h3>
+                            <p><?php echo htmlspecialchars($product['product_beschrijving']); ?></p>
+                            <p class="price">€<?php echo number_format($product['product_prijs'], 2, ',', '.'); ?></p>
+                            <?php if($product['product_voorraad'] > 0): ?>
+                                <button class="btn btn-primary add-to-cart" 
+                                        data-product-id="<?php echo htmlspecialchars($product['id']); ?>">
+                                    In winkelwagen
+                                </button>
+                            <?php else: ?>
+                                <button class="btn" disabled>Uitverkocht</button>
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
                 </div>
-            <?php endforeach; ?>
-        </div>
+            </section>
+        <?php endif; ?>
+
+        <section class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Online Bestellen</h3>
+                <p>Eenvoudig uw medicijnen bestellen wanneer het u uitkomt</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-truck"></i>
+                <h3>Snelle Bezorging</h3>
+                <p>Binnen 24 uur bezorgd aan huis</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-comments"></i>
+                <h3>Expert Advies</h3>
+                <p>Online chat met onze apothekers</p>
+            </div>
+        </section>
     </main>
 
-    <script>
-    // Auto-refresh producten elke 30 seconden
-    setInterval(() => {
-        fetch('api/getData.php')
-            .then(response => response.json())
-            .then(data => {
-                if(data.success) {
-                    // Update alleen als er wijzigingen zijn
-                    const productsGrid = document.querySelector('.products-grid');
-                    // Hier kun je de DOM updaten met nieuwe productgegevens
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }, 30000);
-    </script>
-
-=======
-    <div class="dashboard-grid">
-        <!-- Header sectie -->
-        <div class="dashboard-header">
-            <h1 class="dashboard-title">Dashboard</h1>
-            <div class="dashboard-actions">
-                <input type="text" class="search-bar" placeholder="Zoek een product...">
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0800-1234567</p>
+                <p><i class="fas fa-envelope"></i> info@apothecare.nl</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="privacy.php">Privacy</a></li>
+                    <li><a href="voorwaarden.php">Voorwaarden</a></li>
+                    <li><a href="contact.php">Contact</a></li>
+                </ul>
             </div>
         </div>
-
-        <!-- Statistieken sectie -->
-        <div class="stats-grid">
-            <div class="stat-card open-bestellingen">
-                <img src="../../images/icons/orders_icon.png" alt="Bestellingen icoon">
-                <?php 
-                $query = "SELECT COUNT(*) AS aantal FROM bestelling WHERE status_bestelling = 'open'";
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
-                ?>
-                <span class="stat-label">Openstaande Bestellingen</span>
-            </div>
-
-            <div class="stat-card totale-omzet">
-                <img src="../../images/icons/omzet_icon.png" alt="Omzet icoon">
-                <?php 
-                $query = "SELECT SUM(totaal_prijs) AS omzet FROM bestelling WHERE status_bestelling = 'verwerkt'";
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo "<p class='stat-number'>€" . number_format(($result['omzet'] ?? 0), 2, ',', '.') . "</p>";
-                ?>
-                <span class="stat-label">Totale Omzet</span>
-            </div>
-
-            <div class="stat-card totale-producten">
-                <img src="../../images/icons/producten_icon.png" alt="Producten icoon">
-                <?php 
-                $query = "SELECT COUNT(*) AS aantal FROM product"; 
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
-                ?>
-                <span class="stat-label">Totaal Producten</span>
-            </div>
-
-            <div class="stat-card totale-klanten">
-                <img src="../../images/icons/klanten_icon.png" alt="Klanten icoon">
-                <?php
-                $query = "SELECT COUNT(*) AS aantal FROM gebruiker";
-                $stmt = $conn->prepare($query);
-                $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                echo "<p class='stat-number'>" . ($result['aantal'] ?? 0) . "</p>";
-                ?>
-                <span class="stat-label">Totale Klanten</span>
-            </div>
+        <div class="footer-bottom">
+            <p>&copy; <?php echo date('Y'); ?> ApotheCare - Alle rechten voorbehouden</p>
         </div>
+    </footer>
 
-        <!-- Hoofd content sectie -->
-        <div class="main-content">
-            <div class="orders-card">
-                <h2 class="card-title">Totale Bestellingen per dag</h2>
-                <div class="chart-placeholder"></div>
-            </div>
-
-            <div class="inventory-card">
-                <h2 class="card-title">Voorraad</h2>
-                <div class="inventory-item">
-                    <h3>Product: Paracetamol</h3>
-                    <div class="progress-container">
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 36%"></div>
-                        </div>
-                        <span class="progress-text">360 / 1000</span>
-                    </div>
-                </div>
-                <a href="#" class="more-link">Meer</a>
-            </div>
-        </div>
-    </div>
-
-=======
->>>>>>> 1b1955f5f0897a657e06b1a6f183aff9597bb0d7
-    <!-- AlpineJS voor dropdown functionaliteit -->
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
->>>>>>> 0163c85fecaecba776351e5e3198fc5d0416c405
+    <script src="/javascript/cart.js"></script>
 </body>
 </html>
