@@ -20,11 +20,11 @@ session_start(); // Start de sessie
     <nav> 
         <div class="nav-container"> 
             <div class="nav-left">
-                <a href="../index.html" class="logo-link">
+                <a href="" class="logo-link">
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
-                    <span>Apothecare</span>
                 </a>
-                <a href="#">Producten</a>
+                <a href="">Apothecare</a>
+                <a href="producten.php">Producten</a>
                 <a href="#">Chatbot</a>
             </div>
             <div class="search-container"> 
