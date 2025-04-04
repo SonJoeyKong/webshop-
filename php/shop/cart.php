@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// Product data (simulatie van een database)
-$products = [
-    "Paracetamol" => ["name" => "Paracetamol", "price" => 5.99],
-    "Neusspray" => ["name" => "Neusspray", "price" => 3.49],
-];
-
 // Check if cart data is sent via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['cart'] = json_decode(file_get_contents('php://input'), true);

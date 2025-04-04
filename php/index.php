@@ -30,8 +30,8 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApotheCare - Online Medicijnen Bestellen</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/menu.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/menu.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
@@ -46,7 +46,7 @@ try {
                 <a href="#">Producten</a>
                 <a href="#">Chatbot</a>
             </div>
-        <?php elseif (!empty($featured_products)): ?>
+        <?php if (!empty($featured_products)): ?>
             <section class="featured-products">
                 <h2>Uitgelichte Producten</h2>
                 <div class="products-grid">
