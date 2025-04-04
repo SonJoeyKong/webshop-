@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <a href="../index.html" class="logo-link">
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
                 </a>
+                <a href="index.php">Apothecare</a>
                 <a href="">Producten</a>
                 <a href="">Chatbot</a>
             </div>
