@@ -44,9 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <nav> <!-- Navigatie Bar -->
         <div class="nav-container"> <!-- De foto & text die links staat. -->
             <div class="nav-left">
-                <a href="../index.html" class="logo-link">
+                <a href="" class="logo-link">
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
                 </a>
+                <a href="index.php">Apothecare</a>  
                 <a href="">Producten</a>
                 <a href="">Chatbot</a>
             </div>
