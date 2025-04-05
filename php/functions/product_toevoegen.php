@@ -15,44 +15,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Toevoegen</title>
+    <title>Product Toevoegen - Apothecare</title>
     <link rel="stylesheet" href="../../css/test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <!-- Navigatiebalk code -->
-    </nav>
+    <!-- Navigatiebalk hier (zelfde als andere pagina's) -->
 
     <div class="form-container">
-        <h1>Product Toevoegen</h1>
-        <form method="POST">
+        <h1 class="form-title">Product Toevoegen</h1>
+        
+        <form method="POST" action="product_toevoegen.php">
             <div class="form-group">
-                <label for="naam">Productnaam:</label>
-                <input type="text" id="naam" name="naam" required>
+                <label for="naam">Productnaam</label>
+                <input type="text" id="naam" name="naam" class="form-input" required>
             </div>
+            
             <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving" required></textarea>
+                <label for="beschrijving">Beschrijving</label>
+                <textarea id="beschrijving" name="beschrijving" class="form-input" required></textarea>
             </div>
+            
             <div class="form-group">
-                <label for="prijs">Prijs (€):</label>
-                <input type="number" id="prijs" name="prijs" step="0.01" min="0" required>
+                <label for="prijs">Prijs (€)</label>
+                <input type="number" id="prijs" name="prijs" step="0.01" min="0" class="form-input" required>
             </div>
+            
             <div class="form-group">
-                <label for="voorraad">Voorraad:</label>
-                <input type="number" id="voorraad" name="voorraad" min="0" required>
+                <label for="voorraad">Voorraad</label>
+                <input type="number" id="voorraad" name="voorraad" min="0" class="form-input" required>
             </div>
+            
             <div class="form-actions">
-                <a href="voorraad.php" class="cancel-btn">Annuleren</a>
-                <button type="submit" class="submit-btn">Product Toevoegen</button>
+                <a href="../personeel/voorraad.php" class="btn btn-cancel">Annuleren</a>
+                <button type="submit" class="btn btn-submit">Product Toevoegen</button>
             </div>
         </form>
     </div>
 </body>
 </html>
+
