@@ -9,8 +9,9 @@ require_once '../database.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApotheCare</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/menu.css">
+    <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
+    <link rel="stylesheet" href="../../css/menu.css"> <!-- CSS voor de dashboard pagina -->
+    <link rel="stylesheet" href="../../css/dev.css"> <!-- CSS voor de dashboard pagina -->
     
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -64,68 +65,94 @@ require_once '../database.php';
         </div>
     </nav>
 
-    <main>
-        <div class="dashboard-container">
-            <h1>Mijn Medicatie</h1>
-            <?php
-            $userid = $_SESSION['user_id'];
+    <!-- MAIN met 4-op-een-rij containers -->
+    <main class="dashboard-grid">
 
-            $stmt = $conn->prepare("SELECT * FROM recepten WHERE gebruiker_id = :userid");
-            $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
-            $stmt->execute();
-            $recepten = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    <!-- Mijn Medicatie -->
+    <div class="dashboard-box">
+        <h2>Mijn Medicatie</h2>
+        <hr>
+        <?php
+        $userid = $_SESSION['user_id'];
+        $stmt = $conn->prepare("SELECT * FROM recepten WHERE gebruiker_id = :userid");
+        $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
+        $stmt->execute();
+        $recepten = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        if ($recepten) {
             foreach ($recepten as $recept) {
-                // Haal productinformatie op
                 $productStmt = $conn->prepare("SELECT * FROM product WHERE id = :product_id");
                 $productStmt->bindParam(':product_id', $recept['product_id'], PDO::PARAM_INT);
                 $productStmt->execute();
                 $product = $productStmt->fetch(PDO::FETCH_ASSOC);
 
-                echo "<div class='recept'>";
-                echo "<h2>" . htmlspecialchars($product['product_naam']) . "</h2>";
-                echo "<p>" . htmlspecialchars($product['product_beschrijving']) . "</p>";
-                echo "<p>Prijs: €" . htmlspecialchars($product['product_prijs']) . "</p>";
-                echo "</div>";
+                echo "<p><strong>Naam:</strong> " . htmlspecialchars($product['product_naam']) . "<br>";
+                echo "<strong>Dosering:</strong> WIP<br>";
+                echo "<strong>Bijwerkingen:</strong> WIP<br><br>";
+                echo "<strong>Laatste Vernieuwing:</strong> WIP<br>";
+                echo "<strong>Automatische Herhaling:</strong> WIP</p><br>";
             }
-            ?>
-        </div>
+        } else {
+            echo "<p>WIP</p>";
+        }
+        ?>
+    </div>
 
-        <div class="dashboard-container">
-            <h1>Mijn Leveringen</h1>
-            <?php
-            $userid = $_SESSION['user_id'];
+    <!-- Mijn Leveringen -->
+    <div class="dashboard-box">
+        <h2>Mijn Leveringen</h2>
+        <hr>
+        <?php
+        $stmt = $conn->prepare("SELECT * FROM bestelling WHERE gebruiker_id = :userid");
+        $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
+        $stmt->execute();
+        $bestellingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $stmt = $conn->prepare("SELECT * FROM bestelling WHERE gebruiker_id = :userid");
-            $stmt->bindParam(':userid', $userid, PDO::PARAM_INT);
-            $stmt->execute();
-            $bestellingen = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        if ($bestellingen) {
             foreach ($bestellingen as $bestelling) {
-                // Haal productinformatie op
                 $productStmt = $conn->prepare("SELECT * FROM product WHERE id = :product_id");
                 $productStmt->bindParam(':product_id', $bestelling['product_id'], PDO::PARAM_INT);
                 $productStmt->execute();
                 $product = $productStmt->fetch(PDO::FETCH_ASSOC);
 
-                echo "<div class='bestelling'>";
-                echo "<h2>" . htmlspecialchars($product['product_naam']) . "</h2>";
-                echo "<p>" . htmlspecialchars($product['product_beschrijving']) . "</p>";
-                echo "<p>Prijs: €" . htmlspecialchars($product['product_prijs']) . "</p>";
-                echo "</div>";
+                echo "<p><strong>Bestelnummer:</strong> " . strtoupper(substr(md5($bestelling['id']), 0, 7)) . "<br>";
+                echo "<strong>Medicijn:</strong> " . htmlspecialchars($product['product_naam']) . "<br>";
+                echo "<strong>Status:</strong> " . htmlspecialchars($bestelling['status_bestelling']) . "<br><br>";
+                echo "<strong>Verwachte Leverdatum:</strong> " . date('d-m-Y', strtotime($bestelling['aflever_datum'])) . "<br>";
+                echo "<strong>Afhaaloptie:</strong> " . htmlspecialchars($bestelling['gebruiker_adres']) . "</p><br>";
             }
-            ?>
+        } else {
+            echo "<p>WIP</p>";
+        }
+        ?>
+    </div>
+
+    <!-- Rechterzijde: Afspraken + Notificaties -->
+    <div class="dashboard-right">
+        <div class="dashboard-box">
+            <h2>Afspraken</h2>
+            <hr>
+            <p>
+                <strong>Datum:</strong> 25-04-2025<br>
+                <strong>Tijd:</strong> 14:30<br>
+                <strong>Type:</strong> Medicatie afhalen<br>
+                <strong>Locatie:</strong> Online (Teams)
+            </p>
         </div>
 
-        <div class="dashboard-container-small">
-            <h1>Afspraken</h1>
-            <p>WIP</p>
+        <div class="dashboard-box">
+            <h2>Notificaties</h2>
+            <hr>
+            <p>
+                <strong>Type:</strong> Herinnering<br>
+                <strong>Bericht:</strong> Tijd om paracetamol te nemen<br>
+                <strong>Tijdstip:</strong> 04-01-2025 08:00
+            </p>
         </div>
+    </div>
+</main>
 
-        <div class="dashboard-container-small">
-            <h1>Notificaties</h1>
-            <p>WIP</p>
-        </div>
-    </main>
+
+
 </body>
 </html>

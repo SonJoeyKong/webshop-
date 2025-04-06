@@ -18,7 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             session_start();
             $_SESSION['user_id'] = $result['id'];
             $_SESSION['username'] = $result['naam'];
-            $_SESSION['role'] = $result['rol'];
+            $_SESSION['role'] = $result['role'];
+            header('Location: dashboard.php'); 
             exit;
 
         } else {
@@ -37,6 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApotheCare</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+
     <script src="https://kit.fontawesome.com/f7a63622f4.js" crossorigin="anonymous"></script> <!-- Icons library -->
 </head>
 <body>

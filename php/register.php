@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registreren - ApotheCare</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/navbar.css"> <!-- CSS voor de navigatiebalk -->
 
 <script src="https://kit.fontawesome.com/f7a63622f4.js" crossorigin="anonymous"></script> <!-- Icons library -->
 </head>
@@ -96,13 +97,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label for="adres">Adres:</label>
-                <textarea id="adres" name="adres" required></textarea>
+                <input id="adres" name="adres" required></inpu>
             </div>
             <div class="form-group">
                 <label for="telefoon_nummer">Telefoonnummer:</label>
                 <input type="text" id="telefoon_nummer" name="telefoon_nummer" required>
             </div>
-            <a href="register.php" class="register-link">Inloggen →</a>  
+            <a href="login.php" class="register-link">Inloggen →</a>  
             <button type="submit" class="register-btn">Registreren</button>                      
         </form>
     </div>

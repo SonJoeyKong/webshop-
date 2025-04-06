@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
             chatInput.value = "";
 
             try {
-                const response = await fetch('/php/api/chatbot.php', {
+                const response = await fetch('../php/api/chatbot.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

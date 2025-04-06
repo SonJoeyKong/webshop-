@@ -8,7 +8,9 @@ session_start(); // Start de sessie
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApotheCare</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/menu.css">
+    <link rel="stylesheet" href="../css/navbar.css">
+    <!-- Chatbot Style - React Build -->
+    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
     
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -37,7 +39,7 @@ session_start(); // Start de sessie
             <div class="nav-right">
                 <?php if (isset($_SESSION['username'])): ?> <!-- dit zie je alleen als je een session heb -->
                     <!-- Winkelwagen knop -->
-                    <a href="cart.php">
+                    <a href="shop/cart.php">
                         <img src="../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
@@ -50,7 +52,7 @@ session_start(); // Start de sessie
                         <!-- Menu-items -->
                         <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
                             <a href="dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
                             <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
@@ -61,5 +63,12 @@ session_start(); // Start de sessie
             </div>
         </div>
     </nav>
+
+    <div id="react-chatbot"></div>
+
+    <!-- Chatbot Code -> React Build -->
+    <script src="chatbot/static/js/main.0eb252d4.js"></script>
+
+    </script>
 </body>
 </html>
