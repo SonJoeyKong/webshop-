@@ -31,11 +31,16 @@ session_start(); // Start de sessie
                     <!-- Logo Link -->
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
                 </a>
+<<<<<<< HEAD
                 
                 <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
                 <a href="">ApotheCare</a>
                 <a href="#">Producten</a>
                 <a href="#">Chatbot</a> <!-- Chatbox words waarschijnlijk nog verplaats. -->
+=======
+                <a href="./product.php">Producten</a>
+                <a href="./Chatbot.php">Chatbot</a>
+>>>>>>> development
             </div>
             <div class="search-container"> 
                 <div class="search-group">
@@ -64,6 +69,13 @@ session_start(); // Start de sessie
                             <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
+                    <div class media= media >
+                        <button>wiet</button>
+                        <button>syroop</button>
+                        <button></button>
+                        <button></button>
+                        <button>paracetamol</button>
+                      </media>
                 <?php else: ?> <!-- anders zie je dit alleen -->
                     <a href="login.php">Inloggen</a>
                     <a href="register.php">Registreren</a>
@@ -79,6 +91,7 @@ session_start(); // Start de sessie
 
     </script>
 </body>
+<<<<<<< HEAD
 <!-- Hero Section -->
 <section class="hero">
     <img src="../images/headimg.png" alt="Happy People" class="hero-img">
@@ -136,5 +149,7 @@ session_start(); // Start de sessie
         </ul>
     <?php endfor; ?>
 </footer>
+=======
+>>>>>>> development
 
 </html>
