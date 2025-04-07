@@ -86,7 +86,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo "<div class='product-card'>";
         echo "<img src='../../images/products/" . $producten['product_afbeelding'] . "' alt='" . $producten['product_naam'] . "' class='product-image'>";
         echo "<h2 class='product-title'>" . $producten['product_naam'] . "</h2>";
-        echo "<p class='product-price'>€" . number_format($producten['product_prijs'], 0, ',', '.') . ",-</p>";
+        echo "<p class='product-price'>€" . $producten['product_prijs'] . "</p>";
         echo "<p class='product-description'>" . $producten['product_beschrijving'] . "</p>";
         echo "<div class='product-buttons'>";
         echo "<button onclick='decreaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>-</button>";
