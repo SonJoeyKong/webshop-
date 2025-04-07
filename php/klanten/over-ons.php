@@ -1,44 +1,19 @@
-<?php
-require_once '../database.php';
-session_start();
-
-if (!isset($_GET['id'])) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-$id = $_GET['id'];
-$stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
-$stmt->execute([$id]);
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$product) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $naam = $_POST['naam'];
-    $beschrijving = $_POST['beschrijving'];
-    $prijs = $_POST['prijs'];
-    $voorraad = $_POST['voorraad'];
-    
-    $stmt = $conn->prepare("UPDATE product SET product_naam = ?, product_beschrijving = ?, product_prijs = ?, product_voorraad = ? WHERE id = ?");
-    $stmt->execute([$naam, $beschrijving, $prijs, $voorraad, $id]);
-    
-    header("Location: ../personeel/voorraad.php");
-    exit();
-}
+<!-- 
+ taal css en html
+onver-ons door: Kieran
+ het doel van onver-ons.php is informatie geven over apothecare.
+ --->
+ <?php
+session_start(); // Start de sessie
 ?>
-
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Bewerken</title>
-    <link rel="stylesheet" href="../../css/test.css">
-    <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
+    <title>ApotheCare</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css"> <!-- Dit werkt niet style veranderd namelijk niet ! -->
     
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -47,7 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<div class="nav-container">
+<!-- Hier begint de navigatie_balk.   -->
+    <nav> 
+        <div class="nav-container">
             <div class="nav-left">
                 <a href="" class="logo-link">
                     <!-- Logo Link -->
@@ -93,30 +70,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-    <div class="form-container">        <h1>Product Bewerken</h1>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="naam">Productnaam:</label>
-                <input type="text" id="naam" name="naam" value="<?= htmlspecialchars($product['product_naam']) ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving" required><?= htmlspecialchars($product['product_beschrijving']) ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prijs">Prijs (€):</label>
-                <input type="number" id="prijs" name="prijs" step="0.01" min="0" value="<?= $product['product_prijs'] ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="voorraad">Voorraad:</label>
-                <input type="number" id="voorraad" name="voorraad" min="0" value="<?= $product['product_voorraad'] ?>" required>
-            </div>
-            <div class="form-actions">
-                <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
-                <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
-            </div>
-        </form>
-    </div>
+<section class="bigtext">
+    <h1>over ons</h1>
+<p id="overonsTOP">Bij ApotheCare staan we klaar om jou te helpen met alles wat te maken heeft met medicatie en gezondheid.</p> 
+<p>Als nieuwe, moderne online apotheek maken we het eenvoudig om jouw geneesmiddelen te bestellen,</p>
+<p>informatie op te zoeken over medicatie en bijsluiters, én herhaalrecepten aan te vragen.</p>
+<p>Geen wachtrijen of gedoe meer - gewoon zorg, wanneer jij die nodig hebt.</p>
+<br>
+<p>Ons team van gediplomeerde apothekers en zorgexperts staat elke dag klaar om jou persoonlijk te ondersteunen.</p>
+<p>We geloven dat ook online zorg menselijk, betrouwbaar en betrokken moet zijn.</p>
+<p id="overonspBOT">Bij ApotheCare combineren we technologie met echte aandacht, zodat jij kunt rekenen op advies en service waarop je kunt vertrouwen.</p>
+</section>
 </body>
-</html>
+</html> 

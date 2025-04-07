@@ -29,20 +29,22 @@ if (isset($_GET['verwijder_id'])) {
 </head>
 <body>
 <nav> 
-        <div class="nav-container"> 
+        <div class="nav-container">
             <div class="nav-left">
-                <a href="../index.php" class="logo-link">
+                <a href="" class="logo-link">
+                    <!-- Logo Link -->
                     <img src="../../images/logo.png" alt="ApotheCare Logo" class="logo">
-                    <span>Apothecare</span>
                 </a>
+                
+                <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
+                <a href="../index.php">ApotheCare</a>
                 <a href="../shop/producten.php">Producten</a>
-                <a href="#">Chatbot</a>
             </div>
             <div class="search-container"> 
                 <div class="search-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input placeholder="Zoek een product...">
-                    <button>Meer zorg</button>
+                    <button>Meer zorg</button> <!-- Dit moet een Uitklapbare tabworden -->
                 </div>
             </div>
             <div class="nav-right">
@@ -60,14 +62,14 @@ if (isset($_GET['verwijder_id'])) {
 
                         <!-- Menu-items -->
                         <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
-                            <a href="dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
-                            <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
+                            <a href="../dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
+                            <a href="../shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="../signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
                 <?php else: ?> <!-- anders zie je dit alleen -->
-                    <a href="login.php">Inloggen</a>
-                    <a href="register.php">Registreren</a>
+                    <a href="../login.php">Inloggen</a>
+                    <a href="../register.php">Registreren</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -111,8 +113,8 @@ if (isset($_GET['verwijder_id'])) {
                             </div>
                         </td>
                         <td class="actions">
-                            <a href="../functions/product_bewerken.php?id=<?= $product['id'] ?>" class="edit-btn"><i class="fas fa-edit"></i></a>
-                            <a href="voorraad.php?verwijder_id=<?= $product['id'] ?>" class="delete-btn" onclick="return confirm('Weet u zeker dat u dit product wilt verwijderen?')"><i class="fas fa-trash"></i></a>
+                            <a href="../functions/product_bewerken.php?id=<?= $product['id'] ?>" class="edit-btn"><i class="fas fa-edit" style="color: #26B9A2;"></i></a>
+                            <a href="voorraad.php?verwijder_id=<?= $product['id'] ?>" class="delete-btn" onclick="return confirm('Weet u zeker dat u dit product wilt verwijderen?')"><i class="fas fa-trash" style="color: #26B9A2;"></i></a>
                         </td>
                     </tr>
                     <?php endwhile; ?>

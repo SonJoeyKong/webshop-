@@ -10,7 +10,6 @@ require_once '../database.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ApotheCare</title>
     <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
-    <link rel="stylesheet" href="../../css/menu.css"> <!-- CSS voor de dashboard pagina -->
     <link rel="stylesheet" href="../../css/dev.css"> <!-- CSS voor de dashboard pagina -->
     
     <!-- icons van het menu & voor dat input field -->
@@ -20,27 +19,29 @@ require_once '../database.php';
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-    <nav> 
-        <div class="nav-container"> 
+<nav> 
+        <div class="nav-container">
             <div class="nav-left">
-                <a href="../index.html" class="logo-link">
+                <a href="" class="logo-link">
+                    <!-- Logo Link -->
                     <img src="../../images/logo.png" alt="ApotheCare Logo" class="logo">
-                    <span>Apothecare</span>
                 </a>
-                <a href="#">Producten</a>
-                <a href="#">Chatbot</a>
+                
+                <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
+                <a href="../index.php">ApotheCare</a>
+                <a href="../shop/producten.php">Producten</a>
             </div>
             <div class="search-container"> 
                 <div class="search-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input placeholder="Zoek een product...">
-                    <button>Meer zorg</button>
+                    <button>Meer zorg</button> <!-- Dit moet een Uitklapbare tabworden -->
                 </div>
             </div>
             <div class="nav-right">
                 <?php if (isset($_SESSION['username'])): ?> <!-- dit zie je alleen als je een session heb -->
                     <!-- Winkelwagen knop -->
-                    <a href="cart.php">
+                    <a href="../shop/cart.php">
                         <img src="../../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
@@ -52,14 +53,14 @@ require_once '../database.php';
 
                         <!-- Menu-items -->
                         <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
-                            <a href="dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
-                            <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
+                            <a href="../dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
+                            <a href="../shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="../signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
                 <?php else: ?> <!-- anders zie je dit alleen -->
-                    <a href="login.php">Inloggen</a>
-                    <a href="register.php">Registreren</a>
+                    <a href="../login.php">Inloggen</a>
+                    <a href="../register.php">Registreren</a>
                 <?php endif; ?>
             </div>
         </div>

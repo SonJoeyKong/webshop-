@@ -8,35 +8,32 @@ if (!isset($_GET['id'])) {
 }
 
 $id = $_GET['id'];
-$stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
+$stmt = $conn->prepare("SELECT * FROM bestelling WHERE id = ?");
 $stmt->execute([$id]);
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
+$bestelling = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if (!$product) {
+if (!$bestelling) {
     header("Location: voorraad.php");
     exit();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $naam = $_POST['naam'];
-    $beschrijving = $_POST['beschrijving'];
-    $prijs = $_POST['prijs'];
-    $voorraad = $_POST['voorraad'];
+    $status = $_POST['status'];
     
-    $stmt = $conn->prepare("UPDATE product SET product_naam = ?, product_beschrijving = ?, product_prijs = ?, product_voorraad = ? WHERE id = ?");
-    $stmt->execute([$naam, $beschrijving, $prijs, $voorraad, $id]);
+    $stmt = $conn->prepare("UPDATE bestelling SET status_bestelling = ? WHERE id = ?");
+    $stmt->execute([$status, $id]);
     
-    header("Location: ../personeel/voorraad.php");
+    header("Location: ../personeel/bestellingen.php");
     exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Bewerken</title>
+    <title>Bestelling Bewerken</title>
     <link rel="stylesheet" href="../../css/test.css">
     <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
     
@@ -47,7 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<div class="nav-container">
+    <nav>
+        <div class="nav-container">
             <div class="nav-left">
                 <a href="" class="logo-link">
                     <!-- Logo Link -->
@@ -93,30 +91,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-    <div class="form-container">        <h1>Product Bewerken</h1>
+    <div class="form-container">        
+    <h1>Bestelling Bewerken - Nr. <?php echo ("$id")?></h1>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="naam">Productnaam:</label>
-                <input type="text" id="naam" name="naam" value="<?= htmlspecialchars($product['product_naam']) ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving" required><?= htmlspecialchars($product['product_beschrijving']) ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prijs">Prijs (€):</label>
-                <input type="number" id="prijs" name="prijs" step="0.01" min="0" value="<?= $product['product_prijs'] ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="voorraad">Voorraad:</label>
-                <input type="number" id="voorraad" name="voorraad" min="0" value="<?= $product['product_voorraad'] ?>" required>
-            </div>
-            <div class="form-actions">
-                <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
-                <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
-            </div>
-        </form>
+    <form method="POST">
+        <div class="form-group">
+            <label for="status">Status van bestelling:</label>
+            <select id="status" name="status" required>
+                <option value="open" <?= $bestelling['status_bestelling'] === 'open' ? 'selected' : '' ?>>Open</option>
+                <option value="verwerkt" <?= $bestelling['status_bestelling'] === 'verwerkt' ? 'selected' : '' ?>>Verwerkt</option>
+                <option value="voltooid" <?= $bestelling['status_bestelling'] === 'voltooid' ? 'selected' : '' ?>>Voltooid</option>
+            </select>
+        </div>
+        <div class="form-actions">
+            <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
+            <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
+        </div>
+    </form>
     </div>
 </body>
 </html>

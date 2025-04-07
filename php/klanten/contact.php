@@ -1,44 +1,20 @@
-<?php
-require_once '../database.php';
-session_start();
-
-if (!isset($_GET['id'])) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-$id = $_GET['id'];
-$stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
-$stmt->execute([$id]);
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$product) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $naam = $_POST['naam'];
-    $beschrijving = $_POST['beschrijving'];
-    $prijs = $_POST['prijs'];
-    $voorraad = $_POST['voorraad'];
-    
-    $stmt = $conn->prepare("UPDATE product SET product_naam = ?, product_beschrijving = ?, product_prijs = ?, product_voorraad = ? WHERE id = ?");
-    $stmt->execute([$naam, $beschrijving, $prijs, $voorraad, $id]);
-    
-    header("Location: ../personeel/voorraad.php");
-    exit();
-}
+<!-- 
+ taal css en html
+onver-ons door: Kieran
+ het doel van contact.php is contact informatie geven over apothecare.
+ --->
+ <?php
+session_start(); // Start de sessie
 ?>
-
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Bewerken</title>
-    <link rel="stylesheet" href="../../css/test.css">
-    <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
+    <title>ApotheCare</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/menu.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
     
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -47,7 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<div class="nav-container">
+<nav> 
+        <div class="nav-container">
             <div class="nav-left">
                 <a href="" class="logo-link">
                     <!-- Logo Link -->
@@ -93,30 +70,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-    <div class="form-container">        <h1>Product Bewerken</h1>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="naam">Productnaam:</label>
-                <input type="text" id="naam" name="naam" value="<?= htmlspecialchars($product['product_naam']) ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving" required><?= htmlspecialchars($product['product_beschrijving']) ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prijs">Prijs (€):</label>
-                <input type="number" id="prijs" name="prijs" step="0.01" min="0" value="<?= $product['product_prijs'] ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="voorraad">Voorraad:</label>
-                <input type="number" id="voorraad" name="voorraad" min="0" value="<?= $product['product_voorraad'] ?>" required>
-            </div>
-            <div class="form-actions">
-                <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
-                <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
-            </div>
-        </form>
-    </div>
+    <section>
+    <p>hello</p>
+</section>
+
+
 </body>
-</html>
