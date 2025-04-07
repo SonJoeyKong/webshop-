@@ -72,13 +72,11 @@ session_start(); // Start de sessie
         </div>
     </nav>
 
-    <div id="react-chatbot"></div>
+   <div id="react-chatbot"></div>
 
     <!-- Chatbot Code -> React Build -->
-    <script src="chatbot/static/js/main.0eb252d4.js"></script>
+    <!-- <ssrc="chatbot/static/js/main.0eb252d4.js"></script> -->
 
-    </script>
-</body>
 <!-- Hero Section -->
 <section class="hero">
     <img src="../images/headimg.png" alt="Happy People" class="hero-img">
@@ -136,5 +134,5 @@ session_start(); // Start de sessie
         </ul>
     <?php endfor; ?>
 </footer>
-
+</body>
 </html>
