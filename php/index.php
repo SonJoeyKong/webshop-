@@ -24,6 +24,7 @@ session_start(); // Start de sessie
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
+    <!--- hier begint de navigatie balk.  -->
     <nav> 
         <div class="nav-container"> 
             <div class="nav-left">
