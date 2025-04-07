@@ -20,18 +20,21 @@ session_start(); // Start de sessie
     <nav> 
         <div class="nav-container"> 
             <div class="nav-left">
-                <a href="../index.html" class="logo-link">
+                <a href="" class="logo-link">
+                    <!-- Logo Link -->
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
-                    <span>Apothecare</span>
                 </a>
+                
+                <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
+                <a href="">ApotheCare</a>
                 <a href="#">Producten</a>
-                <a href="#">Chatbot</a>
+                <a href="#">Chatbot</a> <!-- Chatbox words waarschijnlijk nog verplaats. -->
             </div>
             <div class="search-container"> 
                 <div class="search-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input placeholder="Zoek een product...">
-                    <button>Meer zorg</button>
+                    <button>Meer zorg</button> <!-- Dit moet een Uitklapbare tabworden -->
                 </div>
             </div>
             <div class="nav-right">
