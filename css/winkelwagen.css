@@ -1,0 +1,56 @@
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 30px;
+}
+
+#cart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+#cart-container h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+#cart-container p {
+    font-size: 16px;
+    color: #555;
+}
+
+#cart-container hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 15px 0;
+}
+
+#total-price {
+    font-size: 24px;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+button[type="submit"] {
+    display: block;
+    margin: 30px auto;
+    background-color: #6ca9d8;
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #5794c2;
+}
