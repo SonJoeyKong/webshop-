@@ -120,8 +120,12 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </nav>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+>>>>>>> testing
+=======
+    <div class="product-grid">
 >>>>>>> testing
     <?php
     foreach ($product as $producten) // voor elk product een div maken
@@ -130,6 +134,11 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo "<h2>" . $producten['product_naam'] . "</h2>";
         echo "<p>Prijs: €" . number_format($producten['product_prijs'], 2, ',', '.') . "</p>";
         echo "<p>Beschrijving: " . $producten['product_beschrijving'] . "</p>";
+        echo "<div class='product-card'>";
+        echo "<img src='../../images/products/" . $producten['product_afbeelding'] . "' alt='" . $producten['product_naam'] . "' class='product-image'>";
+        echo "<h2 class='product-title'>" . $producten['product_naam'] . "</h2>";
+        echo "<p class='product-price'>€" . number_format($producten['product_prijs'], 0, ',', '.') . ",-</p>";
+        echo "<p class='product-description'>" . $producten['product_beschrijving'] . "</p>";
         echo "<div class='product-buttons'>";
         
         echo "<button onclick='decreaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>-</button>";
@@ -140,6 +149,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo "</div>";
     }
     ?>
+    </div>
 
 <div id="react-chatbot"></div>
 

@@ -71,3 +71,6 @@ CREATE TABLE bestelling (
     FOREIGN KEY (gebruiker_id) REFERENCES gebruiker(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES product(id) ON DELETE CASCADE
 );
+
+--
+ALTER TABLE product ADD COLUMN product_afbeelding VARCHAR(255) AFTER product_voorraad;
