@@ -44,12 +44,22 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span>Apothecare</span>
                 </a>
                 <a href="producten.php">Producten</a>
+                <a href="" class="logo-link">
+                    <!-- Logo Link -->
+                    <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
+                </a>
+                
+                <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
+                <a href="">ApotheCare</a>
+                <a href="">Producten</a>
+                <a href="#">Chatbot</a> <!-- Chatbox words waarschijnlijk nog verplaats. -->
             </div>
             <div class="search-container"> 
                 <div class="search-group">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input placeholder="Zoek een product...">
                     <button>Meer zorg</button>
+                    <button>Meer zorg</button> <!-- Dit moet een Uitklapbare tabworden -->
                 </div>
             </div>
             <div class="nav-right">
@@ -57,12 +67,14 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <!-- Winkelwagen knop -->
                     <a href="cart.php">
                         <img src="../../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
+                        <img src="../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
                     <!-- Dropdown menu -->
                     <div class="menu" x-data="{ open: false }">
                         <button @click="open = !open" class="menu-button">
                             <img src="../../images/icons/menu_icon.png" alt="Menu Icoon" width="50px">
+                            <img src="../images/icons/menu_icon.png" alt="Menu Icoon" width="50px">
                         </button>
 
                         <!-- Menu-items -->
@@ -75,11 +87,20 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php else: ?> <!-- anders zie je dit alleen -->
                     <a href="../login.php">Inloggen</a>
                     <a href="../register.php">Registreren</a>
+                            <a href="dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
+                            <a href="cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
+                        </div>
+                    </div>
+                <?php else: ?> <!-- anders zie je dit alleen -->
+                    <a href="login.php">Inloggen</a>
+                    <a href="register.php">Registreren</a>
                 <?php endif; ?>
             </div>
         </div>
     </nav>
     <div class="product-grid">
+
     <?php
     foreach ($product as $producten) // voor elk product een div maken
     {
