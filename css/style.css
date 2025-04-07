@@ -525,3 +525,86 @@ body {
 }
 
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hero {
+    position: relative;
+    text-align: center;
+    color: #000;
+    background-color: #d3f2f2;
+    padding: 2rem;
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.hero-text {
+    margin-top: 1rem;
+}
+
+.hero-buttons {
+    margin-top: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1.5rem;
+    background-color: #75d8d8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 1rem;
+    font-size: 1rem;
+}
+
+.btn-secondary {
+    background-color: #0099cc;
+    color: white;
+}
+
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 160px;
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.footer-grid {
+    background-color: #1ca1a1;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.footer-grid ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-grid li {
+    margin: 0.3rem 0;
+}
