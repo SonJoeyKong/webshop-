@@ -24,8 +24,8 @@ session_start(); // Start de sessie
                     <img src="../images/logo.png" alt="ApotheCare Logo" class="logo">
                     <span>Apothecare</span>
                 </a>
-                <a href="#">Producten</a>
-                <a href="#">Chatbot</a>
+                <a href="./product.php">Producten</a>
+                <a href="./Chatbot.php">Chatbot</a>
             </div>
             <div class="search-container"> 
                 <div class="search-group">
@@ -54,6 +54,13 @@ session_start(); // Start de sessie
                             <a href="signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
+                    <div class media= media >
+                        <button>wiet</button>
+                        <button>syroop</button>
+                        <button></button>
+                        <button></button>
+                        <button>paracetamol</button>
+                      </media>
                 <?php else: ?> <!-- anders zie je dit alleen -->
                     <a href="login.php">Inloggen</a>
                     <a href="register.php">Registreren</a>
@@ -62,4 +69,5 @@ session_start(); // Start de sessie
         </div>
     </nav>
 </body>
+
 </html>
