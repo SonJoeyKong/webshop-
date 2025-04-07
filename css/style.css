@@ -26,81 +26,6 @@ body {
     flex-direction: column;
 }
 
-/* Basis navbar style */
-nav {
-    background: #E5E5E5;
-    padding: 1rem 0;
-    font-weight: bold;
-}
-
-/* flex voor de navbar */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-/* Links die links staan */
-.nav-left {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* grootte tussen de links */
-}
-
-.nav-left a {
-    color: #26B9A2;
-    text-decoration: none;
-}
-
-/* Zoekbalk die in het mdiden staat */
-.search-container {
-    flex: 1; /* zorgt dat het de breedte pakt die over is */
-    max-width: 500px;
-    margin: 0 20px;
-}
-
-.search-group {
-    display: flex;
-    align-items: center;
-    border-radius: 5px;
-    padding: 5px 10px;
-}
-
-.search-group i {
-    color: #26B9A2;
-    margin-right: 5px;
-}
-
-.search-group input {
-    border: none;
-    padding: 5px;
-    width: 100%;
-}
-
-.search-group button {
-    background: #26B9A2;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-left: 5px;
-    cursor: pointer;
-}
-
-/* Inloggen/Registreren die rechts staan */
-.nav-right {
-    display: flex;
-    gap: 15px;
-}
-
-.nav-right a {
-    color: #26B9A2;
-    text-decoration: none;
-}
-
 /* Container styling */
 .container {
     max-width: 1200px;
@@ -149,41 +74,39 @@ nav {
 }
 
 /* Login */
-/* Login - aangepast om even groot te zijn als register-form */
 .login-container {
-    max-width: 600px;
+    max-width: 700px;
     margin: 2rem auto;
-    padding: 10rem;
+    padding: 3rem; /* Verminderd van 10rem naar 3rem voor betere ruimtegebruik */
     background: #EBECEA;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-/* Login - consistent met register-stijlen */
 .login-form {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 3rem;
-    border-radius: 8px;
+    width: 100%; /* Zorgt dat formulier de volledige breedte gebruikt */
+    margin: 0 auto; /* Center align */
 }
 
 .login-container h1 {
-    color: #000000; /* Zwart in plaats van #26B9A2 zoals bij register */
-    text-align: center;
+    color: #000000;
+    text-align: left;
     margin-bottom: 2rem;
     font-size: 1.8rem;
 }
 
 .form-group {
     margin-bottom: 2rem;
+    width: 100%; /* Volledige breedte */
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.75rem;
-    color: #333;
+    color: #000000;
     font-weight: 500;
     font-size: 1.1rem;
+    text-align: left; /* Zorgt dat labels links uitlijnen */
 }
 
 .form-group input {
@@ -192,13 +115,27 @@ nav {
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #26b9a2;
+    outline: none;
 }
 
 .form-actions {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 2.5rem;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2.5rem;
 }
 
 .register-link {
@@ -209,32 +146,38 @@ nav {
 }
 
 .login-btn {
-    background: #26B9A2;
-    color: white;
-    border: none;
+    background: transparent;
+    color: #26B9A2;
+    border: 2px solid #26B9A2;
     padding: 1rem 2rem;
     border-radius: 6px;
     font-size: 1.1rem;
     font-weight: 500;
     cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%; /* Volledige breedte voor mobiel */
+    max-width: 150px; /* Maximale breedte voor desktop */
+}
+
+.login-btn:hover {
+    background: #26B9A2;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .button-container {
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+    
+    .login-btn {
+        width: auto;
+    }
 }
 
 /* Optionele extra styling */
 .form-group:last-child {
     margin-bottom: 1.5rem;
-}
-
-/* Responsieve navigatie */
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 /* Moderne formulieren */
@@ -395,35 +338,40 @@ nav {
     gap: 2rem;
 }
 /* Register - using same class names as login for consistency */
-.register-form {
-    max-width: 600px;
+/* Register */
+.register-container {
+    max-width: 700px;
     margin: 2rem auto;
     padding: 3rem;
     background: #EBECEA;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.register-form {
+    width: 100%;
+    margin: 0 auto;
 }
 
 .register-container h1 {
     color: #000000;
-    text-align: center;
-    margin-bottom: 2rem;  /* Meer ruimte */
-    font-size: 1.8rem;  /* Iets grotere tekst */
+    text-align: left; /* Consistent met login */
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
 }
-
-    
-
 
 .form-group {
     margin-bottom: 2rem;
+    width: 100%;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.75rem;
-    color: #333;
+    color: #000000;
     font-weight: 500;
     font-size: 1.1rem;
+    text-align: left;
 }
 
 .form-group input {
@@ -432,13 +380,27 @@ nav {
     border: 1px solid #ddd;
     border-radius: 6px;
     font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: #26b9a2;
+    outline: none;
 }
 
 .form-actions {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 100%;
+    margin-top: 2.5rem;
+}
+
+.button-container {
+    width: 100%;
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 2.5rem;
 }
 
 .login-link {
@@ -449,15 +411,46 @@ nav {
 }
 
 .register-btn {
-    background: #26B9A2;
-    color: white;
-    border: none;
-    padding: 1rem 2rem;  /* Grotere knop */
+    background: transparent;
+    color: #26B9A2;
+    border: 2px solid #26B9A2;
+    padding: 1rem 2rem;
     border-radius: 6px;
     font-size: 1.1rem;
     font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 150px;
 }
 
+.register-btn:hover {
+    background: #26B9A2;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .button-container {
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+    
+    .register-btn {
+        width: auto;
+    }
+}
+
+/* Extra stijl voor extra velden */
+.form-row {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 0;
+}
 
 /* Optional: Add some extra styling if needed for register specific elements */
 .form-group:last-child {

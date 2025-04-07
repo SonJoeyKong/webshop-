@@ -4,13 +4,13 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apothecare Dashboard</title>
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/menu.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="../../css/test.css">
 
     <!-- icons van het menu & voor dat input field -->
@@ -132,13 +132,31 @@ session_start();
             <div class="inventory-card">
                 <h2 class="card-title">Voorraad</h2>
                 <div class="inventory-item">
-                    <h3>Product: Paracetamol</h3>
+                    <?php
+                    $query = "SELECT * FROM product";
+                    $stmt = $conn->prepare($query);
+                    $voorraad = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($voorraad as $product) {
+                        $stockClass = $product['product_voorraad'] < 10 ? 'low' : ($product['product_voorraad'] < 100 ? 'medium' : 'good');
+                        echo "<div class='inventory-item $stockClass'>";
+                        echo "<h3>Product: " . htmlspecialchars($product['product_naam']) . "</h3>";
+                        echo "<div class='progress-container'>";
+                        echo "<div class='progress-bar'>";
+                        echo "<div class='progress-fill' style='width: " . ($product['product_voorraad'] / 1000 * 100) . "%'></div>";
+                        echo "</div>";
+                        echo "<span class='progress-text'>" . $product['product_voorraad'] . " / 1000</span>";
+                        echo "</div>";
+                        echo "</div>";
+                    }
+                    ?>
+                    <!-- <h3>Product: Paracetamol</h3>
                     <div class="progress-container">
                         <div class="progress-bar">
                             <div class="progress-fill" style="width: 36%"></div>
                         </div>
                         <span class="progress-text">360 / 1000</span>
-                    </div>
+                    </div> -->
                 </div>
                 <a href="voorraad.php" class="more-link">Meer</a> <!-- Aangepaste link naar voorraadpagina -->
             </div>

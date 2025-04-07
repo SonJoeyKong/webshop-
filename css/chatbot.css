@@ -15,7 +15,7 @@
 }
 
 .chat-header {
-    background-color: #007bff;
+    background-color: #26B9A2;
     color: white;
     padding: 12px;
     display: flex;
@@ -62,7 +62,7 @@
 }
 
 .chat-message.user {
-    background-color: #007bff;
+    background-color: #26B9A2;
     color: white;
     align-self: flex-end;
 }
@@ -98,7 +98,7 @@
 }
 
 .chat-send {
-    background-color: #007bff;
+    background-color: #26B9A2;
     color: white;
     border: none;
     border-radius: 50%;
@@ -112,7 +112,7 @@
 }
 
 .chat-send:hover {
-    background-color: #0056b3;
+    background-color: #185d53;
 }
 
 @media (max-width: 480px) {

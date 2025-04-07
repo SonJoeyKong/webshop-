@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <!-- Navigatiebalk code -->
     </nav>
 
-    <div class="form-container">
-        <h1>Product Bewerken</h1>
+    <div class="form-container">        <h1>Product Bewerken</h1>
+
         <form method="POST">
             <div class="form-group">
                 <label for="naam">Productnaam:</label>
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="number" id="voorraad" name="voorraad" min="0" value="<?= $product['product_voorraad'] ?>" required>
             </div>
             <div class="form-actions">
-                <a href="voorraad.php" class="cancel-btn">Annuleren</a>
+                <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
                 <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
             </div>
         </form>
