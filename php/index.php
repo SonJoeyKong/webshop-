@@ -65,4 +65,59 @@ session_start(); // Start de sessie
         </div>
     </nav>
 </body>
+<!-- Hero Section -->
+<section class="hero">
+    <img src="../images/headimg.png" alt="Happy People" class="hero-img">
+    <div class="hero-text">
+        <h2>Apothecare</h2>
+        <p>Wij brengen zorg bij u thuis</p>
+        <p class="description">
+            We helpen u graag om het leven met een zieke of chronische aandoening gemakkelijker te maken. Mediq levert incontinentiezorg, katheters, wondzorg, medische voeding en stomazorg, zodat u zich minder patiënt voelt en meer mens.
+        </p>
+        <div class="hero-buttons">
+            <button class="btn">Over Ons</button>
+            <button class="btn btn-secondary">Klanten Service</button>
+        </div>
+    </div>
+</section>
+
+<!-- Product Cards -->
+<section class="products">
+    <div class="product-card">
+        <img src="../images/siroop.png" alt="Siroop">
+        <h4>Siroop</h4>
+        <p>Verzacht hoest en keelpijn</p>
+        <span>€4,-</span>
+    </div>
+    <div class="product-card">
+        <img src="../images/wiet.png" alt="Wiet">
+        <h4>Wiet</h4>
+        <p>Als je rust nodig hebt</p>
+        <span>€5,-</span>
+    </div>
+    <div class="product-card">
+        <img src="../images/panadol.png" alt="Panadol">
+        <h4>Panadol Kinderen</h4>
+        <p>Verzacht koorts en pijn</p>
+        <span>€6,-</span>
+    </div>
+    <div class="product-card">
+        <img src="../images/paracetamol.png" alt="Paracetamol">
+        <h4>Paracetamol</h4>
+        <p>Pijnstillend en koortsverlagend</p>
+        <span>€4,-</span>
+    </div>
+</section>
+
+<!-- Footer Grid -->
+<footer class="footer-grid">
+    <?php for ($i = 0; $i < 4; $i++): ?>
+        <ul>
+            <?php for ($j = 0; $j < 6; $j++): ?>
+                <li>> put text</li>
+            <?php endfor; ?>
+        </ul>
+    <?php endfor; ?>
+</footer>
+
 </html>
