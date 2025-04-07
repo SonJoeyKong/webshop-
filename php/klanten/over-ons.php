@@ -1,7 +1,7 @@
 <!-- 
- taal php 
- index.php door joey gemaakt 
- het doel van index.php is de landing page van de website.
+ taal css en html
+onver-ons door: Kieran
+ het doel van onver-ons.php is informatie geven over apothecare.
  --->
  <?php
 session_start(); // Start de sessie
@@ -67,10 +67,15 @@ session_start(); // Start de sessie
     </nav>
 
 
-<section>
-    <p>hello</p>
+<section class="bigtext">
+    <h1>over ons</h1>
+<p id="overonsTOP">Bij ApotheCare staan we klaar om jou te helpen met alles wat te maken heeft met medicatie en gezondheid.</p> 
+<p>Als nieuwe, moderne online apotheek maken we het eenvoudig om jouw geneesmiddelen te bestellen,</p>
+<p>informatie op te zoeken over medicatie en bijsluiters, én herhaalrecepten aan te vragen.</p>
+<p>Geen wachtrijen of gedoe meer - gewoon zorg, wanneer jij die nodig hebt.</p>
+<br>
+<p>Ons team van gediplomeerde apothekers en zorgexperts staat elke dag klaar om jou persoonlijk te ondersteunen.</p>
+<p>We geloven dat ook online zorg menselijk, betrouwbaar en betrokken moet zijn.</p>
+<p id="overonspBOT">Bij ApotheCare combineren we technologie met echte aandacht, zodat jij kunt rekenen op advies en service waarop je kunt vertrouwen.</p>
 </section>
-
-
-
 </body>

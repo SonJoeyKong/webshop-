@@ -1,7 +1,7 @@
 <!-- 
- taal php 
- index.php door joey gemaakt 
- het doel van index.php is de landing page van de website.
+ taal css en html
+onver-ons door: Kieran
+ het doel van contact.php is contact informatie geven over apothecare.
  --->
  <?php
 session_start(); // Start de sessie
