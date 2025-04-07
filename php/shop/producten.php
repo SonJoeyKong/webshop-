@@ -44,7 +44,6 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <span>Apothecare</span>
                 </a>
                 <a href="producten.php">Producten</a>
-                <a href="#">Chatbot</a>
             </div>
             <div class="search-container"> 
                 <div class="search-group">
@@ -56,7 +55,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="nav-right">
                 <?php if (isset($_SESSION['username'])): ?> <!-- dit zie je alleen als je een session heb -->
                     <!-- Winkelwagen knop -->
-                    <a href="shop/cart.php">
+                    <a href="cart.php">
                         <img src="../../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
