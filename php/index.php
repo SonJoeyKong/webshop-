@@ -87,8 +87,8 @@ session_start(); // Start de sessie
             We helpen u graag om het leven met een zieke of chronische aandoening gemakkelijker te maken. Mediq levert incontinentiezorg, katheters, wondzorg, medische voeding en stomazorg, zodat u zich minder patiënt voelt en meer mens.
         </p>
         <div class="hero-buttons">
-            <button class="btn">Over Ons</button>
-            <button class="btn btn-secondary">Klanten Service</button>
+        <a href="klanten/over-ons.php"><button  class="btn">Over Ons</button></a>
+        <a href="klanten/contact.php"><button  class="btn btn-secondary">Klanten Service</button></a>
         </div>
     </div>
 </section>
