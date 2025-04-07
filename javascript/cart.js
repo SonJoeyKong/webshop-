@@ -20,10 +20,16 @@ function decreaseQuantity(productId, price) {
 function updateLocalStorage(productId, quantity, price) {
     let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
+    // 👇 Afbeelding ophalen uit de DOM
+    const imageElement = document.querySelector(`img[alt='${productId}']`);
+    const image = imageElement ? imageElement.getAttribute('src').split('/').pop() : '';
+
     if (quantity > 0) {
         cart[productId] = {
             quantity: quantity,
-            price: price
+            price: price,
+            image: image,
+            name: productId // je kunt ook een aparte naam doorgeven als je wilt
         };
     } else {
         delete cart[productId];

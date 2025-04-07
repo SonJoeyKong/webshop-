@@ -1,45 +1,17 @@
 <?php
-require_once '../database.php';
 session_start();
-
-if (!isset($_GET['id'])) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-$id = $_GET['id'];
-$stmt = $conn->prepare("SELECT * FROM product WHERE id = ?");
-$stmt->execute([$id]);
-$product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$product) {
-    header("Location: voorraad.php");
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $naam = $_POST['naam'];
-    $beschrijving = $_POST['beschrijving'];
-    $prijs = $_POST['prijs'];
-    $voorraad = $_POST['voorraad'];
-    
-    $stmt = $conn->prepare("UPDATE product SET product_naam = ?, product_beschrijving = ?, product_prijs = ?, product_voorraad = ? WHERE id = ?");
-    $stmt->execute([$naam, $beschrijving, $prijs, $voorraad, $id]);
-    
-    header("Location: ../personeel/voorraad.php");
-    exit();
-}
+include_once "../database.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Bewerken</title>
+    <title>Klanten Overzicht</title>
     <link rel="stylesheet" href="../../css/test.css">
-    <link rel="stylesheet" href="../../css/navbar.css"> <!-- CSS voor de navbar -->
-    
+    <link rel="stylesheet" href="../../css/navbar.css">
+
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
@@ -47,7 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<div class="nav-container">
+    <nav> 
+        <div class="nav-container">
             <div class="nav-left">
                 <a href="" class="logo-link">
                     <!-- Logo Link -->
@@ -93,30 +66,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </nav>
 
-    <div class="form-container">        <h1>Product Bewerken</h1>
+    <div class="dashboard-grid">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Klanten</h1>
+            <div class="dashboard-actions">
+                <input type="text" class="search-bar" placeholder="Zoek een klant..." id="searchInput">
+            </div>
+        </div>
 
-        <form method="POST">
-            <div class="form-group">
-                <label for="naam">Productnaam:</label>
-                <input type="text" id="naam" name="naam" value="<?= htmlspecialchars($product['product_naam']) ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea id="beschrijving" name="beschrijving" required><?= htmlspecialchars($product['product_beschrijving']) ?></textarea>
-            </div>
-            <div class="form-group">
-                <label for="prijs">Prijs (€):</label>
-                <input type="number" id="prijs" name="prijs" step="0.01" min="0" value="<?= $product['product_prijs'] ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="voorraad">Voorraad:</label>
-                <input type="number" id="voorraad" name="voorraad" min="0" value="<?= $product['product_voorraad'] ?>" required>
-            </div>
-            <div class="form-actions">
-                <a href="../personeel/voorraad.php" class="cancel-btn">Annuleren</a>
-                <button type="submit" class="submit-btn">Wijzigingen Opslaan</button>
-            </div>
-        </form>
+        <div class="inventory-list">
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>Gebruiker ID</th>
+                        <th>Naam</th>
+                        <th>Email</th>
+                        <th>Adres</th>
+                        <th>Telefoon Nummer</th>
+                        <th>Rol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $query = "SELECT * FROM gebruiker";
+                    $stmt = $conn->query($query);
+                    while ($product = $stmt->fetch(PDO::FETCH_ASSOC)): 
+                    ?>
+                    <tr>
+                        <td><?= htmlspecialchars($product['id']) ?></td>
+                        <td><?= htmlspecialchars($product['naam']) ?></td>
+                        <td><?= htmlspecialchars($product['email']) ?></td>
+                        <td><?= htmlspecialchars($product['adres']) ?></td>
+                        <td><?= htmlspecialchars($product['telefoon_nummer']) ?></td>
+                        <td><?= htmlspecialchars($product['role']) ?></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
+
+    <script>
+        // Zoekfunctionaliteit
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#productTable tbody tr');
+            
+            rows.forEach(row => {
+                const productName = row.cells[0].textContent.toLowerCase();
+                const productDesc = row.cells[1].textContent.toLowerCase();
+                if (productName.includes(searchValue) || productDesc.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>

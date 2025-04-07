@@ -30,7 +30,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: -20px;
 }
 
 .dashboard-title {
@@ -69,8 +69,8 @@ body {
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    margin-bottom: 40px;
+    gap: 15px;
+    margin-bottom: -130px;
 }
 
 .stat-card {
@@ -90,18 +90,21 @@ body {
     width: 60px;
     height: 60px;
     margin-bottom: 20px;
+    align-self: flex-start;
 }
 
 .stat-number {
     font-size: 2.5rem;
     font-weight: 700;
     margin: 15px 0;
-    color: var(--text-dark);
+    color: var(--primary);
+    align-self: flex-start;
 }
 
 .stat-label {
     color: var(--text-gray);
     font-size: 1.2rem;
+    align-self: flex-start;
 }
 
 .main-content {
@@ -137,10 +140,11 @@ body {
     margin-bottom: 30px;
 }
 
-.inventory-item h3 {
+.inventory-item h2 {
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 1.4rem;
+    color: var(--primary);
 }
 
 .progress-container {
@@ -218,6 +222,61 @@ body {
     color: var(--text-gray);
     font-weight: 500;
     font-size: 1.1rem;
+}
+
+/* Inputs en selects */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #26B9A2;
+    box-shadow: 0 0 5px #26B9A2;
+}
+
+input[type="file"] {
+    background-color: #fff;
+}
+
+/* Annuleerknop */
+.cancel-btn {
+    background-color: #ccc;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+    background-color: #b3b3b3;
+}
+
+/* Submitknop */
+.submit-btn {
+    background-color: #26B9A2;
+    color: white;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #14685b;
 }
 
 .form-input {
@@ -429,12 +488,15 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #EBECEA;
+    border: #000000 1px solid;
 }
 
 th, td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    border: #000000 1px solid;
 }
 
 th {
@@ -442,8 +504,12 @@ th {
     color: white;
 }
 
-tr:hover {
-    background-color: #f9f9f9;
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
 }
 
 /* Formulier stijlen */
@@ -474,71 +540,6 @@ textarea {
 textarea {
     min-height: 100px;
     resize: vertical;
-}
-
-/* Knoppen */
-.btn-toevoegen,
-.btn-opslaan,
-.btn-annuleren,
-.btn-bewerk,
-.btn-verwijder {
-    display: inline-block;
-    padding: 8px 15px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.btn-toevoegen {
-    background-color: #26B9A2;
-    color: white;
-    font-size: 14px;
-}
-
-.btn-toevoegen:hover {
-    background-color: #1e9c88;
-}
-
-.btn-opslaan {
-    background-color: #26B9A2;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    padding: 10px 20px;
-}
-
-.btn-opslaan:hover {
-    background-color: #1e9c88;
-}
-
-.btn-annuleren {
-    background-color: #e74c3c;
-    color: white;
-    margin-right: 10px;
-}
-
-.btn-annuleren:hover {
-    background-color: #c0392b;
-}
-
-.btn-bewerk {
-    background-color: #3498db;
-    color: white;
-}
-
-.btn-bewerk:hover {
-    background-color: #2980b9;
-}
-
-.btn-verwijder {
-    background-color: #e74c3c;
-    color: white;
-}
-
-.btn-verwijder:hover {
-    background-color: #c0392b;
 }
 
 /* Knop container */
