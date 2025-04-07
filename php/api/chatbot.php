@@ -1,4 +1,9 @@
 <?php
+// chatbot php
+// autheur Joey
+// versie 1.0
+// datum 2023-10-01
+// beschrijving: Dit is de chatbot van ApotheCare. Deze chatbot kan u helpen met het vinden van producten, informatie over medicijnen, bestellen en contact opnemen met de apotheek.
 header('Content-Type: application/json');
 require_once '../database.php';
 

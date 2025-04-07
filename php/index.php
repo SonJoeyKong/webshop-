@@ -1,3 +1,8 @@
+<!-- 
+ taal php 
+ index.php door joey gemaakt 
+ het doel van index.php is de landing page van de website.
+ --->
 <?php
 session_start(); // Start de sessie
 ?>
@@ -89,18 +94,21 @@ session_start(); // Start de sessie
         <p>Verzacht hoest en keelpijn</p>
         <span>€4,-</span>
     </div>
+    <!-- product wiet -->
     <div class="product-card">
         <img src="../images/wiet.png" alt="Wiet">
         <h4>Wiet</h4>
         <p>Als je rust nodig hebt</p>
         <span>€5,-</span>
     </div>
+    <!-- product paracetamol koorts -->
     <div class="product-card">
         <img src="../images/panadol.png" alt="Panadol">
         <h4>Panadol Kinderen</h4>
         <p>Verzacht koorts en pijn</p>
         <span>€6,-</span>
     </div>
+    <!-- prodict paracetamol -->
     <div class="product-card">
         <img src="../images/paracetamol.png" alt="Paracetamol">
         <h4>Paracetamol</h4>
