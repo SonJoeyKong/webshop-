@@ -1,90 +1,91 @@
 <?php
-// chatbot php
-// autheur Joey
-// versie 1.0
-// datum 2023-10-01
-// beschrijving: Dit is de chatbot van ApotheCare. Deze chatbot kan u helpen met het vinden van producten, informatie over medicijnen, bestellen en contact opnemen met de apotheek.
 header('Content-Type: application/json');
-require_once '../database.php';
 
-function getProductInfo($product_name) {
-    global $conn;
-    try {
-        $stmt = $conn->prepare("SELECT * FROM product WHERE product_naam LIKE :search LIMIT 1");
-        $search = "%{$product_name}%";
-        $stmt->bindParam(':search', $search);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    } catch(PDOException $e) {
-        return null;
+// Load .env zonder Composer
+function loadEnv($path) {
+    if (!file_exists($path)) return;
+
+    $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0 || !str_contains($line, '=')) continue;
+
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value, "\"' "); // Verwijder quotes en spaties
+
+        putenv("$name=$value");
+        $_ENV[$name] = $value;
+        $_SERVER[$name] = $value;
     }
 }
 
-$input = json_decode(file_get_contents('php://input'), true);
-$message = strtolower($input['message'] ?? '');
+// .env laden
+loadEnv(__DIR__ . '/../../.env');
 
-$responses = [
-    'greeting' => [
-        'hallo' => 'Hallo! Hoe kan ik u helpen met onze apotheek diensten?',
-        'hi' => 'Hallo! Hoe kan ik u helpen met onze apotheek diensten?',
-        'goedemorgen' => 'Goedemorgen! Waarmee kan ik u helpen?',
-        'goedemiddag' => 'Goedemiddag! Waarmee kan ik u helpen?',
-        'goedeavond' => 'Goedeavond! Waarmee kan ik u helpen?'
-    ],
-    'help' => [
-        'help' => 'Ik kan u helpen met: producten zoeken, informatie over medicijnen, bestellen, of contact met de apotheek.',
-        'hulp' => 'Ik kan u helpen met: producten zoeken, informatie over medicijnen, bestellen, of contact met de apotheek.'
-    ],
-    'products' => [
-        'producten' => 'We hebben verschillende medicijnen en gezondheidsproducten. Waar bent u naar op zoek?',
-        'medicijnen' => 'We hebben verschillende medicijnen. Zoekt u iets specifieks?',
-        'prijs' => 'Ik kan u helpen met prijsinformatie. Welk product zoekt u?'
-    ],
-    'order' => [
-        'bestellen' => 'U kunt online bestellen via onze webshop. Wilt u weten hoe dat werkt?',
-        'levering' => 'Wij leveren binnen 24 uur aan huis. Voor 16:00 besteld is morgen in huis.',
-        'verzending' => 'De verzendkosten zijn €4,95. Bij bestellingen boven €50 is de verzending gratis.'
-    ],
-    'contact' => [
-        'contact' => 'U kunt ons bereiken op 0800-1234567 of via info@apothecare.nl',
-        'telefoon' => 'Ons telefoonnummer is 0800-1234567',
-        'email' => 'Ons emailadres is info@apothecare.nl'
-    ],
-    'farewell' => [
-        'doei' => 'Tot ziens! Heeft u nog vragen, stel ze gerust.',
-        'dag' => 'Tot ziens! Heeft u nog vragen, stel ze gerust.',
-        'bedankt' => 'Graag gedaan! Heeft u nog andere vragen?'
+// 🗝️ Haal API key op
+$apiKey = $_ENV['APIKEY'] ?? null;
+if (!$apiKey) {
+    echo json_encode(['message' => 'API key niet gevonden in .env']);
+    exit;
+}
+
+// 📥 Bericht binnenhalen
+$input = json_decode(file_get_contents('php://input'), true);
+$message = trim($input['message'] ?? '');
+
+if (empty($message)) {
+    echo json_encode(['message' => 'Geen bericht ontvangen.']);
+    exit;
+}
+
+// 🔗 Hugging Face API instellingen
+$model = 'mistralai/Mistral-7B-Instruct-v0.1';
+$url = "https://api-inference.huggingface.co/models/{$model}";
+
+// ✍️ Prompt bouwen
+$prompt = <<<EOT
+Je bent een vriendelijke, professionele apotheek chatbot genaamd ApotheCare. Beantwoord vragen van klanten op een duidelijke, veilige en behulpzame manier.
+
+Klant: {$message}
+ApotheCare:
+EOT;
+
+$data = [
+    "inputs" => $prompt,
+    "parameters" => [
+        "temperature" => 0.5,
+        "max_new_tokens" => 150,
+        "stop" => ["Klant:"]
     ]
 ];
 
-$response = ['message' => 'Sorry, ik begrijp uw vraag niet helemaal. Kunt u het anders formuleren?'];
+$options = [
+    'http' => [
+        'header'  => "Content-type: application/json\r\nAuthorization: Bearer $apiKey\r\n",
+        'method'  => 'POST',
+        'content' => json_encode($data),
+        'timeout' => 10
+    ]
+];
 
-// Check voor productinformatie
-if (strpos($message, 'prijs') !== false || strpos($message, 'info') !== false) {
-    foreach (['paracetamol', 'ibuprofen', 'aspirine', 'vitamine'] as $product) {
-        if (strpos($message, $product) !== false) {
-            $product_info = getProductInfo($product);
-            if ($product_info) {
-                $response = [
-                    'message' => "Product: {$product_info['product_naam']}\n" .
-                                "Prijs: €{$product_info['product_prijs']}\n" .
-                                "Beschrijving: {$product_info['product_beschrijving']}\n" .
-                                "Voorraad: {$product_info['product_voorraad']} stuks beschikbaar",
-                    'type' => 'product'
-                ];
-            }
-        }
-    }
+$context = stream_context_create($options);
+$response_raw = file_get_contents($url, false, $context);
+
+if ($response_raw === false) {
+    echo json_encode(['message' => 'Er ging iets mis bij het ophalen van een AI-response.']);
+    exit;
 }
 
-// Check voor andere responses
-foreach ($responses as $category => $options) {
-    foreach ($options as $keyword => $reply) {
-        if (strpos($message, $keyword) !== false) {
-            $response = ['message' => $reply, 'type' => $category];
-            break 2;
-        }
-    }
+$response_data = json_decode($response_raw, true);
+$generated_text = $response_data[0]['generated_text'] ?? 'Geen bruikbaar antwoord ontvangen.';
+
+// 🔍 Schoonmaken
+$cleaned = str_replace($prompt, '', $generated_text);
+
+// 🚫 Inhoudsfilter
+if (stripos($cleaned, 'nigger') !== false || stripos($cleaned, 'sikte') !== false) {
+    $cleaned = 'Excuses, er ging iets mis bij het genereren van een passend antwoord.';
 }
 
-echo json_encode($response); 
+// 📤 Output
+echo json_encode(['message' => trim($cleaned)]);
