@@ -32,7 +32,7 @@ foreach ($cart as $item) {
     <link rel="stylesheet" href="../../css/navbar.css">
 
     <!-- Chatbot Style - React Build -->
-    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
+    <link rel="stylesheet" href="../chatbot/static/css/main.0e710cc4.css">
     
     <!-- icons van het menu & voor dat input field -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -103,6 +103,7 @@ foreach ($cart as $item) {
             </div>
         </div>
     </nav>
+    
     <h1>Winkelwagen</h1>
         <div id="cart-container"></div>
 
@@ -139,6 +140,6 @@ foreach ($cart as $item) {
     <div id="react-chatbot"></div>
 
     <!-- Chatbot Code -> React Build -->
-    <script src="chatbot/static/js/main.0eb252d4.js"></script>
+    <script src="../chatbot/static/js/main.0eb252d4.js"></script>
 </body>
 </html>
