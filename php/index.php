@@ -146,14 +146,54 @@ if (count($product) > 0) {
 
 <!-- Footer Grid -->
 <footer class="footer-grid">
-    <?php for ($i = 0; $i < 4; $i++): ?>
-        <ul>
-            <?php for ($j = 0; $j < 6; $j++): ?>
-                <li>> put text</li>
-            <?php endfor; ?>
-        </ul>
-    <?php endfor; ?>
+<ul>
+  <strong> <li>Home</li> </strong>
+  <li>Klant Worden</li>
+  <li></li>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
+
+<ul>
+  <strong> <li>Patiënt</li> </strong>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
+
+<ul>
+  <strong> <li>Over Ons</li> </strong>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
+
+<ul>
+  <strong> <li>Coffee</li> </strong>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+  <li>Milk</li>
+  <li>Coffee</li>
+  <li>Tea</li>
+</ul>
 </footer>
+<!-- Dit stukje is word niet gepakt door style.csss -->
+<p class="copyright"> © 2025. Alle rechten voorbehouden.
+Neem contact op via mborijnland@hotmail.nl </p>
+
 
 <div id="react-chatbot"></div>
 
