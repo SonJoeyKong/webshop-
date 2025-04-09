@@ -674,4 +674,11 @@ body {
     .bigtext p {
         font-size: 1em;
     }
+
+.copyright { /*Dit stukje CSS wilt niet connecten aan de Index.php */
+ background-color: #1ca1a1;
+color: white;
+margin: 0px;
+padding-left: 25px;
+}
 }
