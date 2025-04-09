@@ -30,6 +30,7 @@ foreach ($cart as $item) {
     <title>Cart</title>
     <link rel="stylesheet" href="../../css/winkelwagen.css">
     <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
 
     <script src="../../javascript/cart.js"></script>
 
