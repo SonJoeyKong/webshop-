@@ -17,10 +17,27 @@ function decreaseQuantity(productId, price) {
     }
 }
 
+function deleteProduct(productId) {
+    console.log("Deleting product with ID:", productId);
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || {};
+
+    if (cart[productId]) {
+        delete cart[productId];
+        localStorage.setItem('cart', JSON.stringify(cart));
+        location.reload();
+    }
+
+    let productElement = document.getElementById("product-" + productId);
+    if (productElement) {
+        productElement.remove();
+        location.reload();
+    }
+}
+
 function updateLocalStorage(productId, quantity, price) {
     let cart = JSON.parse(localStorage.getItem('cart')) || {};
 
-    // 👇 Afbeelding ophalen uit de DOM
     const imageElement = document.querySelector(`img[alt='${productId}']`);
     const image = imageElement ? imageElement.getAttribute('src').split('/').pop() : '';
 
@@ -29,7 +46,7 @@ function updateLocalStorage(productId, quantity, price) {
             quantity: quantity,
             price: price,
             image: image,
-            name: productId // je kunt ook een aparte naam doorgeven als je wilt
+            name: productId
         };
     } else {
         delete cart[productId];
