@@ -103,11 +103,6 @@ if (count($product) > 0) {
         echo "<h2 class='product-title'>" . $producten['product_naam'] . "</h2>";
         echo "<p class='product-price'>€" . $producten['product_prijs'] . "</p>";
         echo "<p class='product-description'>" . $producten['product_beschrijving'] . "</p>";
-        echo "<div class='product-buttons'>";
-        echo "<button onclick='decreaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>-</button>";
-        echo "<span id='quantity-" . $producten['product_naam'] . "' data-product-id='" . $producten['product_naam'] . "'>0</span>";
-        echo "<button onclick='increaseQuantity(\"" . $producten['product_naam'] . "\", " . $producten['product_prijs'] . ")' data-product-id='" . $producten['product_naam'] . "'>+</button>";
-        echo "</div>";
         echo "</div>";
     }
 } else {

@@ -30,6 +30,9 @@ foreach ($cart as $item) {
     <title>Cart</title>
     <link rel="stylesheet" href="../../css/winkelwagen.css">
     <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
+
+    <script src="../../javascript/cart.js"></script>
 
     <!-- Chatbot Style - React Build -->
     <link rel="stylesheet" href="../chatbot/static/css/main.0e710cc4.css">
@@ -79,7 +82,7 @@ foreach ($cart as $item) {
             <div class="nav-right">
                 <?php if (isset($_SESSION['username'])): ?> <!-- dit zie je alleen als je een session heb -->
                     <!-- Winkelwagen knop -->
-                    <a href="cart.php">
+                    <a href="#">
                         <img src="../../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
@@ -92,7 +95,7 @@ foreach ($cart as $item) {
                         <!-- Menu-items -->
                         <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
                             <a href="../dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="#"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
                             <a href="../signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>
@@ -107,7 +110,7 @@ foreach ($cart as $item) {
     <h1>Winkelwagen</h1>
         <div id="cart-container"></div>
 
-        <p><strong>Totaalprijs:</strong> €<span id="total-price">0.00</span></p>
+        <p><span id="total-price">€0.00</span></p>
 
         <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -121,8 +124,9 @@ foreach ($cart as $item) {
                 productDiv.innerHTML = `
                     <h2>${productId}</h2>
                     <p>Prijs per stuk: €${item.price.toFixed(2)}</p>
-                    <p>Aantal: ${item.quantity}</p>
+                    <p id="aantal">Aantal: ${item.quantity}</p>
                     <p>Subtotaal: €${(item.price * item.quantity).toFixed(2)}</p>
+                    <button onclick="deleteProduct('${productId}')" class="cancel-btn">Verwijder</button>
                     <hr>
                 `;
                 cartContainer.appendChild(productDiv);
@@ -134,7 +138,7 @@ foreach ($cart as $item) {
         </script>
 
     <form action="afrekenen.php" method="GET">
-        <button type="submit">Afrekenen</button>
+        <button type="submit" class="submit-btn">Afrekenen</button>
     </form>
 
     <div id="react-chatbot"></div>
