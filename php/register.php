@@ -63,7 +63,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </a>
                 <a href="index.php">Apothecare</a>
                 <a href="">Producten</a>
-                <a href="">Chatbot</a>
             </div>
     
             <div class="search-container"> <!-- Input Field & Button die in het midden staan.  -->
