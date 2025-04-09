@@ -12,6 +12,7 @@ session_start();
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/navbar.css">
     <link rel="stylesheet" href="../../css/test.css">
+    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
 
     <!-- Chartjs voor die bestellingen grfaph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -230,5 +231,15 @@ session_start();
 
     <!-- AlpineJS voor dropdown functionaliteit -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+</body>
+<footer style="position: fixed; bottom: 0; width: 100%; text-align: center; background-color: #f1f1f1; padding: 0px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);">
+    <p class="copyright">© 2025. Alle rechten voorbehouden.
+    Neem contact op via mborijnland@hotmail.nl</p>
+</footer>
+
+<div id="react-chatbot" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding:0; ,margin:0;"></div>
+
+<!-- Chatbot Code -> React Build -->
+<script src="chatbot/static/js/main.0eb252d4.js"></script>
 </body>
 </html>

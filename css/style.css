@@ -16,16 +16,6 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    background: var(--background-light);
-    color: var(--text-light);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
 /* Container styling */
 .container {
     max-width: 1200px;
@@ -527,6 +517,15 @@ body {
 
 body {
     margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: var(--background-light);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    padding: 0;
+    flex-direction: column;
     font-family: Arial, sans-serif;
 }
 
@@ -535,7 +534,7 @@ body {
     text-align: center;
     color: #000;
     background-color: #d3f2f2;
-    padding: 2rem;
+    padding-bottom: 50px;
 }
 
 .hero-img {
@@ -681,5 +680,5 @@ body {
     background-color: #1ca1a1;
     color: white;
     margin: 0px;
-    text-align: center;    
+    padding-left: 40px;
 }

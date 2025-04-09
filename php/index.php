@@ -35,7 +35,7 @@ session_start(); // Start de sessie
                 </a>
                 
                 <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
-                <a href="index.php">ApotheCare</a>
+                <a href="index.php">Apothecare</a>
                 <a href="shop/producten.php">Producten</a>
             </div>
             <div class="search-container"> 
@@ -142,52 +142,64 @@ if (count($product) > 0) {
 <!-- Footer Grid -->
 <footer class="footer-grid">
 <ul>
-  <strong> <li>Home</li> </strong>
-  <li>Klant Worden</li>
-  <li></li>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
+  <strong> <li><h1> Algemene Informatie </h1></li> </strong>
+  <li>Betrouwbare online apotheek.</li>
+  <li>Snelle en discrete levering.</li>
+  <li>Altijd scherpe prijzen.</li>
+  <li>Veilig winkelen met SSL.</li>
+  <li>Bestel makkelijk via mobiel.</li>
+  <li>Gecertificeerde kwaliteit.</li>
+<br>
+  <strong> <li><h1> Klantenservice </h1></li> </strong>
+  <li>Service bereikbaar ma t/m vr.</li>
+  <li>Vragen? Neem contact op.</li>
+  <li>We denken met je mee.</li>
+  <li>Check onze veelgestelde vragen.</li>
+  <li>Je ontvangt direct bevestiging.</li>
+  <li>Hulp bij het kiezen? Wij staan klaar.</li>
 </ul>
 
 <ul>
-  <strong> <li>Patiënt</li> </strong>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
+  <strong> <li><h1> Verzending & Retour </h1></li> </strong>
+  <li>Voor 15:00 besteld, morgen in huis.</li>
+  <li>Gratis verzending vanaf €50.</li>
+  <li>Discrete verpakking gegarandeerd.</li>
+  <li>Eenvoudig retourneren.</li>
+  <li>Volg je pakket met Track & Trace.</li>
+  <li>Verzorgd verzonden met PostNL.</li>
+<br>
+  <strong> <li><h1>Veiligheid & Betrouwbaarheod </h1></li> </strong>
+  <li>Privacy staat bij ons voorop.</li>
+  <li>Producten worden gecontroleerd.</li>
+  <li>Jouw gegevens blijven veilig.</li>
+  <li>Alleen erkende leveranciers.</li>
+  <li>Onze apothekers waarborgen kwaliteit.</li>
+  <li>Betaal veilig met iDEAL of kaart.</li>
 </ul>
 
 <ul>
-  <strong> <li>Over Ons</li> </strong>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
+  <strong> <li><h1> Gezondheid & Advies </h1></li> </strong>
+  <li>Gezondheid begint bij ons.</li>
+  <li>Ruim aanbod vitamines & supplementen.</li>
+  <li>Ook EHBO-artikelen beschikbaar.</li>
+  <li>Advies bij medicijngebruik.</li>
+  <li>Lees onze gezondheidstips.</li>
+  <li>Meld je aan voor de nieuwsbrief.</li>
+<br>
+  <strong> <li><h1> Contact & Bedrijf </h1></li> </strong>
+  <li>Geregistreerde apotheek in NL.</li>
+  <li>Bezoek enkel op afspraak.</li>
+  <li>KvK- en BTW op contactpagina.</li>
+  <li>Bereikbaar via mail & telefoon.</li>
+  <li>Volg ons op social media.</li>
+  <li>Bedankt voor je vertrouwen!</li>
 </ul>
 
-<ul>
-  <strong> <li>Coffee</li> </strong>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
-  <li>Milk</li>
-  <li>Coffee</li>
-  <li>Tea</li>
-</ul>
 </footer>
 <!-- Dit stukje is word niet gepakt door style.csss -->
 <p class="copyright"> © 2025. Alle rechten voorbehouden.
 Neem contact op via mborijnland@hotmail.nl </p>
+
 
 <div id="react-chatbot"></div>
 

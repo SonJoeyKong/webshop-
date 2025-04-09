@@ -30,6 +30,7 @@ foreach ($cart as $item) {
     <title>Cart</title>
     <link rel="stylesheet" href="../../css/winkelwagen.css">
     <link rel="stylesheet" href="../../css/navbar.css">
+    <link rel="stylesheet" href="chatbot/static/css/main.0e710cc4.css">
 
     <script src="../../javascript/cart.js"></script>
 
@@ -81,7 +82,7 @@ foreach ($cart as $item) {
             <div class="nav-right">
                 <?php if (isset($_SESSION['username'])): ?> <!-- dit zie je alleen als je een session heb -->
                     <!-- Winkelwagen knop -->
-                    <a href="cart.php">
+                    <a href="#">
                         <img src="../../images/icons/cart_icon.png" alt="Winkelwagen Icoon" width="50px">
                     </a>
 
@@ -94,7 +95,7 @@ foreach ($cart as $item) {
                         <!-- Menu-items -->
                         <div class="menu-dropdown" x-show="open" x-transition @click.away="open = false">
                             <a href="../dashboard.php"><i class="fa-solid fa-user"></i> Dashboard</a>
-                            <a href="shop/cart.php"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
+                            <a href="#"><i class="fa-solid fa-shopping-cart"></i> Winkelwagen</a>
                             <a href="../signout.php"><i class="fa-solid fa-sign-out-alt"></i> Uitloggen</a>
                         </div>
                     </div>

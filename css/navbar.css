@@ -5,6 +5,7 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
+    padding: 0;
 }
 
 nav {
@@ -47,7 +48,6 @@ nav {
 }
 
 .logo-link span {
-    font-size: 1.5rem;
     color: #26B9A2;
 }
 
