@@ -637,6 +637,7 @@ body {
 }
 
 .bigtext {
+    
     max-width: 800px;
     margin: 80px auto;
     padding: 40px;
@@ -645,6 +646,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     text-align: left;
     border-left: 6px solid #26B9A2; /* blauw-cyaan accentlijn */
+    margin-left: 10%;
 }
 
 .bigtext h1 {
@@ -682,4 +684,10 @@ body {
     .bigtext p {
         font-size: 1em;
     }
+}
+#overonsIMG {
+    display: flex;
+    width: 35%;
+    text-align: right;
+    margin-right: 10%;
 }
