@@ -35,7 +35,7 @@ session_start(); // Start de sessie
                 </a>
                 
                 <!-- Dit is een verzameling van alle belangrijken linken naar nieuwe websites binnen de navigatie bar.(Rechts) -->
-                <a href="index.php">ApotheCare</a>
+                <a href="index.php">Apothecare</a>
                 <a href="shop/producten.php">Producten</a>
             </div>
             <div class="search-container"> 
