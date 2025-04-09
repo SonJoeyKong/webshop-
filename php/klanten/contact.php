@@ -74,16 +74,26 @@ session_start(); // Start de sessie
 <section class="bigtext">
     <h1>Klanten service</h1>
     <p>heeft u vragen of een probleem?</p>
-    <li>contact : apothecare@outlook.nl </li>
-    <li>telefoonnummer: 06-12345678</li>
-    <li>adres: apothecare 1234 AB</li>
-    <p>Onze klantenservice staat voor u klaar om u te helpen met al uw vragen en problemen. Wij streven ernaar om u zo snel mogelijk van dienst te zijn.</p>
-    <ul>
-        <li>Openingstijden klantenservice: Maandag t/m Vrijdag van 09:00 tot 17:00</li>
-        <li>Live chat beschikbaar via onze website tijdens openingstijden</li>
-        <li>Reactietijd e-mail: Binnen 24 uur op werkdagen</li>
-    </ul>
+    <li><strong>contact :</strong> apothecare@outlook.nl </li>
+    <li><strong>telefoonnummer :</strong> 06-12345678</li>
+    <li><strong>adres :</strong> apothecare 1234 AB</li>
+    <p>Onze klantenservice staat voor u klaar om u te helpen met al uw vragen en problemen. <br>
+        Wij streven ernaar om u zo snel mogelijk van dienst te zijn.</p>
+    
+    <li><strong>Openingstijden klantenservice :</strong> Maandag t/m Vrijdag van 09:00 tot 17:00</li>
+    <li><strong>Reactietijd e-mail :</strong> Binnen 24 uur op werkdagen</li>
+    Live chat beschikbaar via onze website tijdens openingstijden
+    
     <p>Wij waarderen uw feedback en suggesties. Neem gerust contact met ons op!</p>
 </section>
+<footer style="position: fixed; bottom: 0; width: 100%; text-align: center; background-color: #f1f1f1; padding: 0px; box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);">
+    <p class="copyright">© 2025. Alle rechten voorbehouden.
+    Neem contact op via mborijnland@hotmail.nl</p>
+</footer>
+
+<div id="react-chatbot" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000; padding:0; ,margin:0;"></div>
+
+<!-- Chatbot Code -> React Build -->
+<script src="chatbot/static/js/main.0eb252d4.js"></script>
 </body>
 </html> 
