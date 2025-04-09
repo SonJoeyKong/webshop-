@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once 'database.php'; // Gebruik database.php voor de verbinding
 
 // Controleren of het formulier is ingediend
@@ -8,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!empty($user) && !empty($pass)) {
         // Gebruiker zoeken in de database
-        $stmt = $conn->prepare("SELECT * FROM gebruiker WHERE naam = :username");
+        $stmt = $conn->prepare("SELECT id, naam, wachtwoord, role FROM gebruiker WHERE naam = :username");
         $stmt->bindParam(':username', $user);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);

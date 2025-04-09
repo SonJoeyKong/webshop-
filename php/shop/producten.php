@@ -36,7 +36,7 @@ $product = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body>
-<nav> 
+    <nav> 
         <div class="nav-container"> 
             <div class="nav-left">
                 <a href="../index.php" class="logo-link">
